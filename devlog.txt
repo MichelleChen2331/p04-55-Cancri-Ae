@@ -1,0 +1,2 @@
+Michelle Chen -- 3/29/26 7:44 p.m.
+  - Upadted design log to incude vpython in component map
