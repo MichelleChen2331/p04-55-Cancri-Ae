@@ -10,7 +10,7 @@ git clone git@github.com:MichelleChen2331/p04-55-Cancri-Ae.git
 ```
 2. Navigate into repo:
 ```
-cd 
+cd p04-55-Cancri-Ae
 ```
 
 ### Set up virtual environment:
