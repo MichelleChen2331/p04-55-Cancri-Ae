@@ -6,7 +6,7 @@ Our site will display the information from the dataset in an easily understandab
 ### Install Guide:
 1. Clone this repo:
 ```
-git clone 
+git clone git@github.com:MichelleChen2331/p04-55-Cancri-Ae.git
 ```
 2. Navigate into repo:
 ```
