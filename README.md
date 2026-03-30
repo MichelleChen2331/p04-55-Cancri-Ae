@@ -48,7 +48,7 @@ cd p04-55-Cancri-Ae
 
 ### Navigate to app folder:
 
-  ``` cd frozencarrotpie__thamidurr_kylel114_tudorg_williaml298/app ```
+  ``` cd p04-55-Cancri-Ae/app ```
 
 ### Run \_\_init\_\_.py
 
