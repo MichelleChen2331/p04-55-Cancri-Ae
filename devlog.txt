@@ -2,3 +2,5 @@ Michelle Chen -- 3/29/26 7:44 p.m.
   - Upadted design log to incude vpython in component map
 Natalie Keiger -- 3/30/26 11:15 a.m.
   - Made working app "work". It serves locally now! Plus branching for me 
+Thamidur Rahman -- 3/30/26 11:44 a.m.
+  - Finished install guides
