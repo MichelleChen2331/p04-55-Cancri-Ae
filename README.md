@@ -29,7 +29,7 @@ cd p04-55-Cancri-Ae
 
 ### Install requirements:
 
-  ``` $pip install -r requirements.txt ```
+  ``` pip install -r requirements.txt ```
 
 
 
@@ -38,11 +38,9 @@ cd p04-55-Cancri-Ae
 ### Activate virtual environment:
 
   - Linux/Mac:
-
-    ``` {{venv_path}}/bin/activate ```
+    ``` source {{venv_path}}/bin/activate ```
 
   - Windows:
-
     ``` {{venv_path}}\Scripts\activate ```
 
 
