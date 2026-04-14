@@ -9,3 +9,5 @@ Michelle Chen -- 4/13/26 10:58 p.m.
   - Added navbar, about me section, and footer
   - Added banner.jpg to static folder
   - Created data1.html, data2.html, data3.html, and defintions.html
+Ethan Cheung -- 4/14/26 11:11 a.m.
+  - updated readme for activation of venv
