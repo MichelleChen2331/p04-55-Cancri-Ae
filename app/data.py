@@ -3,6 +3,7 @@ import sqlite3                      # enable control of an sqlite database
 import hashlib                      # for consistent hashes
 import pandas as pd
 import requests
+from urllib.parse import urlencode
 
 DB_FILE="data.db"
 
@@ -20,13 +21,13 @@ def fetch_and_store():
          })
     df = pd.DataFrame(requests.get(url, timeout=15).json())
 
-    conn = sqlite3.connect(DB_PATH)
-    df.too_sql("planets", conn, if_exists="replace", index=False)
+    conn = sqlite3.connect(DB_FILE)
+    df.to_sql("planets", conn, if_exists="replace", index=False)
     conn.close()
     print(f"Stored {len(df)} planets in SQLite.")
 
 def load_planets():
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_FILE)
     df = pd.read_sql("SELECT * FROM planets", conn)
     conn.close()
     return df
