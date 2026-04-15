@@ -2,12 +2,14 @@ from flask import Flask, render_template
 from flask import session, request, redirect
 import plotly.graph_objects as go
 import plotly.utils #plotly helper
+import json
 from data import load_planets
 
 app = Flask(__name__)
 
 @app.route('/home', methods=["GET", "POST"])
 def home():
+    chart_json = build_chart()
     return render_template("home.html")
 
 @app.route("/definitions", methods=["GET", "POST"])
@@ -25,7 +27,7 @@ def build_chart():
         y = yearly["count"],
         marker=dict(
             color = yearly["count"],
-            colorscale = "Cerulean",
+            colorscale = "Viridis",
             showscale = True,
             colorbar = dict(title="# Planets")
         ),
@@ -37,7 +39,7 @@ def build_chart():
     ))
 
     fig.update_layout(
-        title = "Exoplanet Discoveries Per Year"
+        title = "Exoplanet Discoveries Per Year",
         xaxis = dict(title="Year", color="white",
                      gridcolor = "rgba(255,255,255,0.1)"),
         yaxis = dict(title="Number of Planets", color="white",
