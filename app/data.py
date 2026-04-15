@@ -31,5 +31,5 @@ def load_planets():
     conn.close()
     return df
 
-if __name__ = "__main__":
+if __name__ == "__main__":
     fetch_and_store()
