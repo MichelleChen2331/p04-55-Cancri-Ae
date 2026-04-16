@@ -30,6 +30,10 @@ def data1():
 def data2():
     return render_template("data2.html")
 
+@app.route("/explore", methods=["GET", "POST"])
+def explore():
+    return render_template("Explore.html")
+
 def build_chart():
     fetch_and_store()
     df = load_planets()
