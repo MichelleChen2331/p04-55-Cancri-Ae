@@ -11,7 +11,8 @@ app = Flask(__name__)
 @app.route('/home', methods=["GET", "POST"])
 def home():
     chart_json = build_chart()
-    return render_template("home.html", chart_json=chart_json)
+    return render_template("home.html",
+                            chart_json=chart_json)
 
 @app.route("/definitions", methods=["GET", "POST"])
 def definitions():
