@@ -1,13 +1,16 @@
 from flask import Flask, render_template
-from flask import session, request, redirect
+from flask import session, request, redirect, url_for
 import plotly.graph_objects as go
 import plotly.utils #plotly helper
 import json
-from .data import load_planets, fetch_and_store
+from data import load_planets, fetch_and_store
 
 
 app = Flask(__name__)
 
+@app.route('/')
+def index():
+    return redirect(url_for('home'))
 
 @app.route('/home', methods=["GET", "POST"])
 def home():
