@@ -19,6 +19,14 @@ def home():
 def definitions():
     return render_template("defintions.html")
 
+@app.route("/data1", methods=["GET", "POST"])
+def data1():
+    return render_template("data1.html")
+
+@app.route("/data2", methods=["GET", "POST"])
+def data2():
+    return render_template("data2.html")
+
 def build_chart():
     fetch_and_store()
     df = load_planets()
