@@ -3,7 +3,7 @@ from flask import session, request, redirect
 import plotly.graph_objects as go
 import plotly.utils #plotly helper
 import json
-from data import *
+from data import load_planets
 
 app = Flask(__name__)
 
