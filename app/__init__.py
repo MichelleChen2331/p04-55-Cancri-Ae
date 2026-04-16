@@ -20,7 +20,7 @@ def home():
 
 @app.route("/definitions", methods=["GET", "POST"])
 def definitions():
-    return render_template("defintions.html")
+    return render_template("definitions.html")
 
 @app.route("/data1", methods=["GET", "POST"])
 def data1():
@@ -40,6 +40,7 @@ def build_chart():
 
     yearly = df.groupby("disc_year").size().reset_index(name="count")
     fig = go.Figure()
+
 
     fig.add_trace(go.Bar(
         x = yearly["disc_year"],
