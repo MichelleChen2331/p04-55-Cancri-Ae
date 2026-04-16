@@ -17,7 +17,7 @@ Michelle Chen -- 4/14/26 10:55 p.m.
   - comnected nasa database to data.py
   - created planets found in each discovery year graph
   - added graph to home.html
-Ethan Cheung -- 4/15/26 11:47 p.m.
+Ethan Cheung -- 4/15/26 11:47 a.m.
   - bugfixxed homepage
   - added plotly graph
 Michelle Chen -- 4/15/26 9:34 p.m.
