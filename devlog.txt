@@ -20,3 +20,6 @@ Michelle Chen -- 4/14/26 10:55 p.m.
 Ethan Cheung -- 4/15/26 11:47 p.m.
   - bugfixxed homepage
   - added plotly graph
+Michelle Chen -- 4/15/26 9:34 p.m.
+  - Got the live website working
+  - Fixed errors
