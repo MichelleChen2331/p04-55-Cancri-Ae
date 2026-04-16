@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 @app.route('/home', methods=["GET", "POST"])
 def home():
-    chart_json = build_chart()
+    chart_json = build_main_chart()
     return render_template("home.html",
                             chart_json=chart_json)
 
@@ -19,7 +19,11 @@ def home():
 def definitions():
     return render_template("defintions.html")
 
-def build_chart():
+@app.route('/example1', methods=['GET', 'POST'])
+def example1():
+    return render_template('data1.html')
+
+def build_main_chart():
     fetch_and_store()
     df = load_planets()
 

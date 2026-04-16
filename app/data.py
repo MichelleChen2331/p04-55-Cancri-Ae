@@ -11,7 +11,7 @@ def fetch_and_store():
     """Call NASA API once and save results to database."""
 
     sql = """
-        SELECT pl_name, disc_year, discoverymethod
+        SELECT pl_name, disc_year, discoverymethod, pl_orbper, pl_orbsmax
         FROM pscomppars
         WHERE disc_year IS NOT NULL
     """
