@@ -15,8 +15,10 @@ def index():
 @app.route('/home', methods=["GET", "POST"])
 def home():
     chart_json = build_chart()
+    pie_chart_json = pie_discov_method()
     return render_template("home.html",
-                            chart_json=chart_json)
+                            chart_json=chart_json
+                            pie_chart_json=pie_chart_json)
 
 @app.route("/definitions", methods=["GET", "POST"])
 def definitions():
@@ -34,8 +36,8 @@ def data2():
 def explore():
     return render_template("Explore.html")
 
+#Bar Chart of discovery year
 def build_chart():
-    fetch_and_store()
     df = load_planets()
 
     yearly = df.groupby("disc_year").size().reset_index(name="count")
@@ -72,7 +74,35 @@ def build_chart():
 
     return json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 
+#Pie Chart of Discovery
+def pie_discov_method():
+    df = load_planets()
+    methods = df.groupby("discoverymethod").size().reset_index(name="count")
+
+    fig = go.Figure()
+
+    fig.add_trace(go.Pie(
+        labels=methods["discoverymethod"],
+        values=methods["count"],
+        textinfo="label+percent",
+    ),
+    hovertemplate = (
+        "<b>%{label}</b><br>"
+        "Planets: %{value}<br>"
+    ))
+
+    fig.update_layout(
+        title = "Exoplanets Sorted By Discovery Method",
+        paper_bgcolor= "rgba(0,0,0,0)",
+        font = dict(color="white"),
+        margin = dict(l=50, r=50, t=20, b=20),
+    )
+
+    return json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+
+
 
 if __name__ == '__main__':
+    fetch_and_store()
     app.debug = True
     app.run()
