@@ -85,11 +85,10 @@ def pie_discov_method():
         labels=methods["discoverymethod"],
         values=methods["count"],
         textinfo="label+percent",
-    ),
-    hovertemplate = (
+        hovertemplate = (
         "<b>%{label}</b><br>"
         "Planets: %{value}<br>"
-    ))
+    )))
 
     fig.update_layout(
         title = "Exoplanets Sorted By Discovery Method",
