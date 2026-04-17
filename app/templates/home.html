@@ -12,21 +12,18 @@
 <body>
   <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Janssen<span>.</span></a>
+        <a class="navbar-brand">Janssen<span>.</span></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" style="border-color: rgba(79,195,247,0.3);">
               <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
           </button>
     <div class="collapse navbar-collapse justify-content-end" id="navMenu">
-      <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="example1">Data 1</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Data 2</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Data 3</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Definitions</a></li>
-      </ul>
-    </div>
+      <div class='nav'> <a href="/home">Home </a></div>
+      <div class = 'nav'> <a href="/data1">Data 1 </a></div>
+      <div class='nav'><a href="/data2">Data 2 </a></div>
+      <div class='nav'><a href="/defintions">defintions</a></div>
   </div>
-  </nav>
+</div>
+</nav>
 
 <!--BANNER-->
 <section class="banner">
@@ -52,30 +49,38 @@
     </div>
   </section>
 
-<!-- CHART -->
+<!-- BAR CHART -->
    <section class="chart-section">
         <div class="chart-card">
-            <div class="section-label">Visualization</div>
             <h2>Exoplanet Discoveries Per Year</h2>
             <p>Number of exoplanets discovered each year, colored by volume.</p>
             <div id="exoplanet-chart"></div>
         </div>
     </section>
 
-<!-- FOOTER PLACEHOLDER -->
-  <footer class="footer-placeholder">
-    <p>More content coming soon &mdash; Janssen &copy; 2026</p>
-  </footer>
-
+    <br>
+<!-- PIE CHART -->
+ <section class="chart-section">
+    <div class="chart-card">
+            <h2>Exoplanet Sorted By Disocvery Method</h2>
+            <p>Breakdown of how each exoplanet was discovered</p>
+            <div id="pie-chart"></div>
+    </div>
+ </section>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
+    //bar chart
       const chartData = {{ chart_json | safe }};
         Plotly.newPlot('exoplanet-chart', chartData.data, chartData.layout, {
             responsive: true,
             displayModeBar: true,
-            modeBarButtonsToRemove: ['lasso2d', 'select2d']
         });
+    //pie chart
+    const pieData = {{ pie_chart_json | safe }};
+        Plotly.newPlot('pie-chart', pieData.data, pieData.layout, {
+          responsive: true,
+        })
   </script>
 
 </body>

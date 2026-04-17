@@ -13,13 +13,24 @@ Ethan Cheung -- 4/14/26 11:43 a.m.
   - Updated readme for activation of venv
   - Connected home.html page to homepage
   - Created requirements.txt
+Thamidur Rahman -- 4/14/26 11:46 a.m.
+  - reserched formulas required for simulation
+  - began simulation
 Michelle Chen -- 4/14/26 10:55 p.m.
   - comnected nasa database to data.py
   - created planets found in each discovery year graph
   - added graph to home.html
+Thamidur Rahman -- 4/15/26 11:45 a.m.
+  - finshed simulation
+  - finished template for definitions.html
 Ethan Cheung -- 4/15/26 11:47 a.m.
   - bugfixxed homepage
   - added plotly graph
 Michelle Chen -- 4/15/26 9:34 p.m.
   - Got the live website working
   - Fixed errors
+Thamidur Rahman -- 4/16/26 11:47 a.m.
+  - started data2.html
+  - fixed bugs
+Thamidur Rahman -- 4/16/26 3:14 p.m.
+  - fixed merge conflicts
