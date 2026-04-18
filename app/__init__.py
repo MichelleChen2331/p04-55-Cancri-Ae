@@ -8,6 +8,10 @@ from data import load_planets, fetch_and_store
 
 app = Flask(__name__)
 
+import os
+if not os.path.exists(os.path.join(os.path.dirname(__file__), "data.db")):
+    fetch_and_store()
+
 @app.route('/')
 def index():
     return redirect(url_for('home'))
