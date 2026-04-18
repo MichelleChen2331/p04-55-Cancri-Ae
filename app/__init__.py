@@ -17,7 +17,7 @@ def home():
     chart_json = build_chart()
     pie_chart_json = pie_discov_method()
     return render_template("home.html",
-                            chart_json=chart_json
+                            chart_json=chart_json,
                             pie_chart_json=pie_chart_json)
 
 @app.route("/definitions", methods=["GET", "POST"])
