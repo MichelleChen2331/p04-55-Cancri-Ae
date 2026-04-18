@@ -1,44 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<style>
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-td, th {
-  border: 2px solid #dddddd;
-  text-align: left;
-  padding: 10px;
-}
-</style>
-
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=devic-width, initial-scale=1.0"/>
     <title> Definitions </title>
-    <link href="..static/css/home.css" rel="stylesheet"/>
+    <link href="../static/css/home.css" rel="stylesheet"/>
     <script src="https://cdn.plotly.ly/plotly-2.35.2.min.js"></script>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg">
-      <div class="container-fluid">
-        <a class="navbar-brand">Janssen<span>.</span></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" style="border-color: rgba(79,195,247,0.3);">
-              <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
-          </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
-      <div class='nav'> <a href="/home">Home </a></div>
-      <div class = 'nav'> <a href="/data1">Data 1 </a></div>
-      <div class='nav'><a href="/data2">Data 2 </a></div>
-      <div class='nav'><a href="/explore">Explore</a><div>
-      <div class='nav'><a href="/definitions">Definitions</a></div>
-  </div>
-</div>
-</nav>
+  <ul class="navbar">
+      <li class='nav'> <a href="/home">Home </a></li>
+      <li class = 'nav'> <a href="/data1">Data 1 </a></li>
+      <li class='nav'><a href="/data2">Data 2 </a></li>
+      <li class='nav'><a href="/explore">Explore</a></li>
+      <li class='nav'><a href="/definitions">Definitions</a></li>
+  </ul>
 
   <section class="banner">
       <img src="static/images/banner.jpg" alt="Banner" onerror="this.style.display='none'; document.querySelector('.banner-fallback').style.display='flex';">
@@ -49,10 +27,14 @@ td, th {
       </div>
   </section>
 
+  <div>
+    <p> Astronomy is complicated, and astronomers love to make up terms. Here are some of the common ones used in our data:</p>
+  </div>
+
   <table>
   <tr>
-    <th>Word</th>
-    <th>Definitions</th>
+    <th>Term</th>
+    <th>Definition</th>
   </tr>
   <tr>
     <td>Eccentricity</td>
@@ -60,7 +42,7 @@ td, th {
   </tr>
   <tr>
     <td>Mass</td>
-    <td>How massive the planet or star is (kg)</td>
+    <td>How massive the planet or star is in Earth masses</td>
   </tr>
   <tr>
     <td>Right Ascension</td>
@@ -85,6 +67,12 @@ td, th {
 </table>
 
 <h1>Discovery Methods </h1>
+
+  <div>
+    <p>Exoplanets can be found in many different ways. On the home page, a pie chart displays the distribution of different techniques for detecting them. Here is what each of those terms means:</p>
+  </div>
+
+
 <table>
   <tr>
     <th> Method </th>

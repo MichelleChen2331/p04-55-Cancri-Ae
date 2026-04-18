@@ -24,7 +24,7 @@ def fetch_and_store():
         "query": sql,
         "format": "json"
          })
-    df = pd.DataFrame(requests.get(url, timeout=30).json())
+    df = pd.DataFrame(requests.get(url).json())
 
     conn = sqlite3.connect(DB_FILE)
     df.to_sql("planets", conn, if_exists="replace", index=False)
