@@ -14,10 +14,10 @@ def fetch_and_store():
         SELECT pl_name, disc_year, discoverymethod, pl_orbper, pl_orbsmax, pl_rade, pl_masse
         FROM pscomppars
         WHERE disc_year IS NOT NULL
-        WHERE pl_orbper IS NOT NULL
-        WHERE pl_orbsmax IS NOT NULL
-        WHERE pl_rade IS NOT NULL
-        WHERE pl_masse IS NOT NULL
+        AND pl_orbper IS NOT NULL
+        AND pl_orbsmax IS NOT NULL
+        AND pl_rade IS NOT NULL
+        AND pl_masse IS NOT NULL
 
     """
     url = "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?" + urlencode({
