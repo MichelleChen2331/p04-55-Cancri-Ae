@@ -26,7 +26,8 @@ def definitions():
 
 @app.route("/data1", methods=["GET", "POST"])
 def data1():
-    return render_template("data1.html")
+    chart = build_density_chart()
+    return render_template("data1.html", chart_json=chart)
 
 @app.route("/data2", methods=["GET", "POST"])
 def data2():
@@ -35,6 +36,35 @@ def data2():
 @app.route("/explore", methods=["GET", "POST"])
 def explore():
     return render_template("Explore.html")
+
+def build_density_chart():
+    df = load_planets()
+    fig = go.Figure()
+
+    fig.add_trace(go.Histogram(
+        x=df["pl_rade"],
+        nbinsx=30,
+        marker_color="rgba(100,150,200,0.7)",
+        hovertemplate = (
+            "<b>Radius: %{x} Earth Radii</b><br>"
+            "Count: %{y}<br>"
+            "<extra></extra>"
+        )
+    ))
+
+    fig.update_layout(
+        title = "Distribution of Exoplanet Radii",
+        xaxis = dict(title="Radius (Earth Radii)", color="white",
+                     gridcolor = "rgba(255,255,255,0.1)"),
+        yaxis = dict(title="Count", color="white",
+                     gridcolor = "rgba(255,255,255,0.1)"),
+        paper_bgcolor = "rgba(0,0,0,0)",
+        plot_bgcolor = "rgba(20,20,30,0.8)",
+        font = dict(color="white"),
+        margin = dict(l=60, r=40, t=60, b=60),
+    )
+
+    return json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 
 #Bar Chart of discovery year
 def build_chart():
