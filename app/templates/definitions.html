@@ -19,7 +19,6 @@
   </ul>
 
   <section class="banner">
-      <img src="static/images/banner.jpg" alt="Banner" onerror="this.style.display='none'; document.querySelector('.banner-fallback').style.display='flex';">
 
      <div class="banner-overlay"></div>
       <div class="banner-text">
@@ -37,8 +36,24 @@
     <th>Definition</th>
   </tr>
   <tr>
+    <td>Apoapsis</td>
+    <td>The point at which a planet is furthest away from the star it is orbiting. The opposite is the <b> periapsis</b>. </td>
+  </tr>
+    <tr>
+    <td>Declination</td>
+    <td>The other of the two astronomical coordinates used to describe location. Declination (dec) is like latitude, RA is like longitude. Also expressed in hours, minutes, and seconds.</td>
+  </tr>
+  <tr>
     <td>Eccentricity</td>
     <td>A measure of how circular or ovoid an oval is. An eccentricity of 0 is that of a flat line (most elliptical) and an eccentricity of 1 is that of a circle (least elliptical).</td>
+  </tr>
+    <tr>
+    <td>Inclination</td>
+    <td>The angle between the plane of a planet's orbit and a reference plane (usually the ecliptic).</td>
+  </tr>
+    <tr>
+    <td>Luminosity</td>
+    <td>The total amount of energy emitted by a star or other celestial object per unit time (measured in Watts).</td>
   </tr>
   <tr>
     <td>Mass</td>
@@ -48,22 +63,15 @@
     <td>Right Ascension</td>
     <td>One of two coordinates used to denote location for objects in space from Earth's perspective. RA (degrees) is a coordinate that measures the angle between the vernal equinox (where the sun crosses the equator each year to move north) and where that object is in the sky. Generally expressed in hours, minutes, and seconds.</td>
   </tr>
-  <tr>
-    <td>Declination</td>
-    <td>The other of the two astronomical coordinates used to describe location. Declination (dec) is like latitude, RA is like longitude. Also expressed in hours, minutes, and seconds.</td>
+    <tr>
+    <td>Semimajor Axis</td>
+    <td>In elliptical orbits, the semi-major axis is the distance between the center of the ellipse and the furthest point. Often expressed in meters, kilometers, or AU (distance between the Earth and the Sun).</td>
   </tr>
   <tr>
     <td>Transit Time</td>
     <td>The amount of time it takes for an exoplanet to fully transit its star. Not all exoplanets have visible transits -- only the ones where the planet and the star lie in a perpendicular plane to Earth. For those, we can time how long it takes for the planet to cross the star (seconds).</td>
   </tr>
-  <tr>
-    <td>SemiMajor Axis</td>
-    <td>In elliptical orbits, the semi-major axis is the distance between the center of the ellipse and the furthest point. Often expressed in meters, kilometers, or AU (distance between the Earth and the Sun).</td>
-  </tr>
-  <tr>
-    <td>Apoapsis</td>
-    <td>The point at which a planet is furthest away from the star it is orbiting. The opposite is the <b> periapsis</b>. </td>
-  </tr>
+
 </table>
 
 <h1>Discovery Methods </h1>
@@ -78,44 +86,49 @@
     <th> Method </th>
     <th> Description </th>
    </tr>
-   <tr>
-     <td>Transit</td>
-     <td>Some exoplanets pass in front of their host star from Earth's perspective, causing a slight dimming of the star's light. This periodic dimming can be detected and used to confirm the presence of an exoplanet.</td>
-    </tr>
     <tr>
-      <td>Radial Velocity </td>
-      <td> Often, when planets are large in mass and/or close to their star, their mass has an effect on the star. We can observe this by looking at the wavelengths of light emitted by the star. When a planet passes close by, it causes a tiny shift in the wavelengths of light emitted by the star. This happens in both directions at regular intervals, allowing us to know a planet is there!</td>
+      <td>Astrometry </td>
+      <td> The measurement of the positions and motions of stars and other celestial objects. This method can be used to detect exoplanets by observing the gravitational influence they have on their host stars, which can cause slight movements in the locations of the stars.</td>
     </tr>
     <tr>
       <td>Direct Imaging</td>
       <td> When planets are close enough or bright enough, we can directly observe them! </td>
     </tr>
     <tr>
-      <td>Microlensing </td>
-      <td> When a star or planet passes in front of a more distant star, it can act as a gravitational lens, magnifying the light from the background star. We can measure those variations to detect massive bodies such as exoplanets.</td>
-    </tr>
-    <tr>
       <td>Eclipse Time Variations </td>
       <td> Exoplanets can cause slight changes in the timing of eclipses that we can regularly observe.</td>
     </tr>
     <tr>
-      <td>Astrometry </td>
-      <td> The measurement of the positions and motions of stars and other celestial objects. This method can be used to detect exoplanets by observing the gravitational influence they have on their host stars, which can cause slight movements in the locations of the stars.</td>
-    </tr>
-    <tr>
-      <td>Pulsar Timing Variations </td>
-      <td> The regular pulses from a <a href="https://en.wikipedia.org/wiki/Pulsar"> pulsar</a>  can be affected by the presence of an exoplanet, causing variations in the timing of these pulses.</td>
+      <td>Microlensing </td>
+      <td> When a star or planet passes in front of a more distant star, it can act as a gravitational lens, magnifying the light from the background star. We can measure those variations to detect massive bodies such as exoplanets.</td>
     </tr>
     <tr>
       <td>Orbital Brightness Modulation </td>
       <td> Even when exoplanets do not transit their stars, we can sometimes observe how they affect the star's emission by either reflecting or distorting certain light. </td>
     </tr>
     <tr>
+      <td>Pulsar Timing Variations </td>
+      <td> The regular pulses from a <a href="https://en.wikipedia.org/wiki/Pulsar"> pulsar</a>  can be affected by the presence of an exoplanet, causing variations in the timing of these pulses.</td>
+    </tr>
+    <tr>
+      <td>Radial Velocity </td>
+      <td> Often, when planets are large in mass and/or close to their star, their mass has an effect on the star. We can observe this by looking at the wavelengths of light emitted by the star. When a planet passes close by, it causes a tiny shift in the wavelengths of light emitted by the star. This happens in both directions at regular intervals, allowing us to know a planet is there!</td>
+    </tr>
+   <tr>
+     <td>Transit</td>
+     <td>Some exoplanets pass in front of their host star from Earth's perspective, causing a slight dimming of the star's light. This periodic dimming can be detected and used to confirm the presence of an exoplanet.</td>
+    </tr>
+    <tr>
       <td>Transit Timing Variations </td>
       <td> If one exoplanet has already been detected in a system, we can find others by observing variations in the timing of its transits.</td>
     </tr>
 </table>
-
+<br>
+ <footer>
+  <div class="content">
+    <p> Data sourced from <a href="https://exoplanetarchive.ipac.caltech.edu/index.html" >NASA Exoplanet Archive</a>, website by team 55 Cancri-Ae</p>
+  </div>
+ </footer>
 
 </body>
 </html>

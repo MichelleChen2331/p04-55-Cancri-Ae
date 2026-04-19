@@ -12,7 +12,7 @@
 <body>
   <ul class="navbar">
       <li class='nav'> <a href="/home">Home </a></li>
-      <li class = 'nav'> <a href="/data1">Data 1 </a></li>
+      <li class ='nav'> <a href="/data1">Data 1 </a></li>
       <li class='nav'><a href="/data2">Data 2 </a></li>
       <li class='nav'><a href="/explore">Explore</a></li>
       <li class='nav'><a href="/definitions">Definitions</a></li>
@@ -20,27 +20,31 @@
 
 <!--BANNER-->
 <section class="banner">
-    <img src="static/images/banner.jpg" alt="Banner" onerror="this.style.display='none'; document.querySelector('.banner-fallback').style.display='flex';">
 
    <div class="banner-overlay"></div>
     <div class="banner-text">
       <h1>Exploring Exoplanets</h1>
-      <p>A data visualization project</p>
+      <p class="subheading"><i>A data visualization project by 55 Cancri-Ae</i></p>
     </div>
 </section>
 
   <!-- ABOUT SECTION -->
   <section class="about-section">
-    <div class="about-card">
-      <div class="section-label">About</div>
+    <div>
       <h2>About This Project</h2>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore
-        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-        aliquip ex ea commodo consequat.
+        For this project, we aimed to create an easy-to-use website that allows users to explore some of the simpler data available about exoplanets. 
       </p>
     </div>
   </section>
+
+  <div class="howtouse">
+    <div>
+      <h2> User Guide</h2>
+      <p>Welcome to Exploring Exoplanets! This is a pretty simple site designed to be easily navigable. To understand a bit more about what measurements we're showing, go to the <a href='/definitions'> definitions</a> page. To explore all of our data, go to the <a href='/explore'> explore</a> page and select what data you want to display on the graph. To see some example visualizations, check out the <a href='/data1'> data 1</a> and <a href='/data2'> data 2</a> pages.
+      </p>
+    </div>
+  </div>
 
 
 

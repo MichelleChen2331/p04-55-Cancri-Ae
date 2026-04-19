@@ -17,47 +17,47 @@
       <li class='nav'><a href="/explore">Explore</a></li>
       <li class='nav'><a href="/definitions">Definitions</a></li>
   </ul>
-  <br>
+
+  <div>
+    <h1>Explore Exoplanet Data</h1>
+    <p>Now try some customization! Use the dropdowns below to customize your visualization. The first controls the x-axis and the second controls the y-axis. Hover over any one point to display the exact values of both the x and y data.</p>
+  </div>
 
 <!-- Custom Graph -->
  <select id="x-axis">
-    <option value="disc_year">Discovery Year</option>
-    <option value="pl_orbper">Orbital Period</option>
-    <option value="pl_orbsmax">Orbital Distance</option>
-    <option value="pl_rade">Planet Radius</option>
-    <option value="pl_masse">Planet Mass</option>
-    <option value="pl_bmasse">Planet Mass(Earth)</option>
-    <option value="pl_dens">Planet Density</option>
-    <option value="pl_eqt">Temperature(K)</option>
-    <option value="pl_insol">Insolation Flux</option>
-    <option value="pl_orbeccen">Orbital Eccentricity</option>
-    <option value="pl_orbincl">Orbital Inclination</option>
-    <option value="st_teff">Star Temperature</option>
-    <option value="st_rad">Star Radius</option>
-    <option value="st_mass">Star Mass</option>
-    <option value="st_lum">Star Luminosity</option>
-    <option value="st_age">Star Age</option>
-    <option value="sy_dist">Distance From Earth</option>
+  <option value="disc_year">Discovery Year</option>
+  <option value="sy_dist">Distance From Earth (pc)</option>
+  <option value="pl_orbsmax">Semimajor Axis (AU)</option>
+  <option value="pl_orbeccen">Orbital Eccentricity</option>
+  <option value="pl_orbincl">Orbital Inclination (degrees)</option>
+  <option value="pl_orbper">Orbital Period (days)</option>
+  <option value="pl_dens">Planet Density (g/cm³)</option>
+  <option value="pl_masse">Planet Mass (Earth masses)</option>
+  <option value="pl_rade">Planet Radius (Earth radii)</option>
+  <option value="st_age">Star Age (Gyr)</option>
+  <option value="st_lum">Star Luminosity (Solar luminosities)</option>
+  <option value="st_mass">Star Mass (Solar masses)</option>
+  <option value="st_rad">Star Radius (Solar radii)</option>
+  <option value="st_teff">Star Temperature (K)</option>
+  <option value="pl_eqt">Temperature (K)</option>
  </select>
 
  <select id="y-axis">
-    <option value="pl_masse">Planet Mass</option>
-    <option value="disc_year">Discovery Year</option>
-    <option value="pl_orbper">Orbital Period</option>
-    <option value="pl_orbsmax">Orbital Distance</option>
-    <option value="pl_rade">Planet Radius</option>
-    <option value="pl_bmasse">Planet Mass (Earth)</option>
-    <option value="pl_dens">Planet Density</option>
-    <option value="pl_eqt">Temperature (K)</option>
-    <option value="pl_insol">Insolation Flux</option>
-    <option value="pl_orbeccen">Orbital Eccentricity</option>
-    <option value="pl_orbincl">Orbital Inclination</option>
-    <option value="st_teff">Star Temperature</option>
-    <option value="st_rad">Star Radius</option>
-    <option value="st_mass">Star Mass</option>
-    <option value="st_lum">Star Luminosity</option>
-    <option value="st_age">Star Age</option>
-    <option value="sy_dist">Distance from Earth</option>
+  <option value="disc_year">Discovery Year</option>
+  <option value="sy_dist">Distance From Earth (pc)</option>
+  <option value="pl_orbsmax">Semimajor Axis (AU)</option>
+  <option value="pl_orbeccen">Orbital Eccentricity</option>
+  <option value="pl_orbincl">Orbital Inclination (degrees)</option>
+  <option value="pl_orbper">Orbital Period (days)</option>
+  <option value="pl_dens">Planet Density (g/cm³)</option>
+  <option value="pl_masse">Planet Mass (Earth masses)</option>
+  <option value="pl_rade">Planet Radius (Earth radii)</option>
+  <option value="st_age">Star Age (Gyr)</option>
+  <option value="st_lum">Star Luminosity (Solar luminosities)</option>
+  <option value="st_mass">Star Mass (Solar masses)</option>
+  <option value="st_rad">Star Radius (Solar radii)</option>
+  <option value="st_teff">Star Temperature (K)</option>
+  <option value="pl_eqt">Temperature (K)</option>
  </select>
 
  <select id="chart-type">
@@ -66,27 +66,32 @@
  </select>
 
  <div id="explore-chart"></div>
+<p><b>Hint: </b> for a cool visualization, try selecting 'Semimajor axis (AU)' on one axis and 'Orbital Period (days)' on the other. The resulting scatter plot exemplifies a key law of astronomy, Kepler's Third Law! This law states that the cube of a planet's semimajor axis is proportional to the square of its orbital period .</p>
+ <footer>
+  <div class="content">
+    <p> Data sourced from <a href="https://exoplanetarchive.ipac.caltech.edu/index.html" >NASA Exoplanet Archive</a>, website by team 55 Cancri-Ae</p>
+  </div>
+ </footer>
  <script>
   const data = {{ data | safe}};
 
   const labels = {
     disc_year: "Discovery Year",
-    pl_orbper: "Orbital Period",
-    pl_orbsmax: "Orbital Distance",
-    pl_rade: "Planet Radius",
-    pl_masse: "Planet Mass",
-    pl_bmasse: "Planet Mass (Earth)",
-    pl_dens: "Planet Density",
+    pl_orbper: "Orbital Period (days)",
+    pl_orbsmax: "Orbital Distance (AU)",
+    pl_rade: "Planet Radius (Earth radii)",
+    pl_masse: "Planet Mass (Earth masses)",
+    pl_bmasse: "Planet Mass (Earth masses)",
+    pl_dens: "Planet Density (g/cm³)",
     pl_eqt: "Temperature (K)",
-    pl_insol: "Insolation Flux",
     pl_orbeccen: "Orbital Eccentricity",
-    pl_orbincl: "Orbital Inclination",
-    st_teff: "Star Temperature",
-    st_rad: "Star Radius",
-    st_mass: "Star Mass",
-    st_lum: "Star Luminosity",
-    st_age: "Star Age",
-    sy_dist: "Distance From Earth"
+    pl_orbincl: "Orbital Inclination (degrees)",
+    st_teff: "Star Temperature (K)",
+    st_rad: "Star Radius (Solar radii)",
+    st_mass: "Star Mass (Solar masses)",
+    st_lum: "Star Luminosity (Solar luminosities)",
+    st_age: "Star Age (Gyr)",
+    sy_dist: "Distance From Earth (pc)"
   };
 
   const linearColumns = ["disc_year", "pl_orbeccen", "pl_orbincl"];
