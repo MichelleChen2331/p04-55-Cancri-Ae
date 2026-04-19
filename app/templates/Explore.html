@@ -76,6 +76,26 @@
  <script>
   const data = {{ data | safe}};
 
+  const labels = {
+    disc_year: "Discovery Year",
+    pl_orbper: "Orbital Period",
+    pl_orbsmax: "Orbital Distance",
+    pl_rade: "Planet Radius",
+    pl_masse: "Planet Mass",
+    pl_bmasse: "Planet Mass (Earth)",
+    pl_dens: "Planet Density",
+    pl_eqt: "Temperature (K)",
+    pl_insol: "Insolation Flux",
+    pl_orbeccen: "Orbital Eccentricity",
+    pl_orbincl: "Orbital Inclination",
+    st_teff: "Star Temperature",
+    st_rad: "Star Radius",
+    st_mass: "Star Mass",
+    st_lum: "Star Luminosity",
+    st_age: "Star Age",
+    sy_dist: "Distance From Earth"
+  }
+
   function updateChart(){
     const x = document.getElementById("x-axis").value;
     const y = document.getElementById("y-axis").value;
@@ -86,13 +106,26 @@
       y: data.map(d => d[y]),
       mode: type === "scatter" ? "markers" : "lines",
       type: "scatter",
-      hovertemplate: '<b>%{x}</b><br>%{y}'
+      hovertemplate: '<b>' + labels[x]+ ':%{x}</b><br>' + labels[y] + ':%{y}<extra></extra>'
     }],{
-      xaxis: { title: x },
-      yaxis: { title: y },
+      xaxis: { 
+        title: { text: labels[x], font: {color: "white", size: 14 } },
+      color: "white",
+      type: "log",
+      showticklabels: true,
+      gridcolor: "rgba(255,255,255,0.1)"
+    },
+      yaxis: { 
+        title: { text: labels[y], font: {color: "white", size: 14 } },
+        color: "white",
+        type: "log",
+        showticklabels: true,
+        gridcolor: "rgba(255,255,255,0.1)"
+      },
       paper_bgcolor: "rgba(0,0,0,0)",
       plot_bgcolor: "rgba(20,20,30,0.8)",
       font: { color: "white" }
+      margin: { l:80, r:40, t:40,b:80}
     });
   }
 
