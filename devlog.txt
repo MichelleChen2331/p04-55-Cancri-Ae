@@ -34,3 +34,5 @@ Thamidur Rahman -- 4/16/26 11:47 a.m.
   - fixed bugs
 Thamidur Rahman -- 4/16/26 3:14 p.m.
   - fixed merge conflicts
+Ethan Cheung -- 4/18/26 11:16 p.m.
+  - fixed readme

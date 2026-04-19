@@ -24,7 +24,7 @@ cd p04-55-Cancri-Ae
     ``` source {{venv_path}}/bin/activate ```
 
   - Windows:
-    ``` {{venv_path}}\Scripts\activate ```
+    ```source {{venv_path}}\Scripts\activate ```
 
 
 ### Install requirements:
@@ -59,4 +59,3 @@ python app/__init__.py
 ```
 
 Live Website: http://167.172.242.87/home
-
