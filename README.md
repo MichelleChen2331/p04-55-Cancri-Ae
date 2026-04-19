@@ -24,7 +24,7 @@ cd p04-55-Cancri-Ae
     ``` source {{venv_path}}/bin/activate ```
 
   - Windows:
-    ```source {{venv_path}}\Scripts\activate ```
+    ```{{venv_path}}\Scripts\activate ```
 
 
 ### Install requirements:
