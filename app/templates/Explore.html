@@ -94,7 +94,9 @@
     st_lum: "Star Luminosity",
     st_age: "Star Age",
     sy_dist: "Distance From Earth"
-  }
+  };
+
+  const linearColumns = {"disc_year", "pl_orbeccen", "pl_orbincl"};
 
   function updateChart(){
     const x = document.getElementById("x-axis").value;
@@ -111,14 +113,14 @@
       xaxis: { 
         title: { text: labels[x], font: {color: "white", size: 14 } },
         color: "white",
-        type: "log",
+        type: linearColumns.includes(x) ? "linear" : "log",
         showticklabels: true,
         gridcolor: "rgba(255,255,255,0.1)"
     },
       yaxis: { 
         title: { text: labels[y], font: {color: "white", size: 14 } },
         color: "white",
-        type: "log",
+        type: linearColumns.includes(y) ? "linear" : "log",
         showticklabels: true,
         gridcolor: "rgba(255,255,255,0.1)"
       },
