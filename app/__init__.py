@@ -39,7 +39,7 @@ def data2():
 
 @app.route("/explore", methods=["GET", "POST"])
 def explore():
-    return render_template("Explore.html")
+    return render_template("explore.html")
 
 def build_density_chart():
     df = load_planets()
