@@ -77,9 +77,9 @@
   const data = {{ data | safe}};
 
   function updateChart(){
-    const x = document.getElementByld("x-axis").value;
-    const y = document.getElementByld("y-axis").value;
-    const type = document.getElementByld("chart-type").value;
+    const x = document.getElementById("x-axis").value;
+    const y = document.getElementById("y-axis").value;
+    const type = document.getElementById("chart-type").value;
 
     Plotly.newPlot("explore-chart",[{
       x: data.map(d => d[x]),
@@ -97,9 +97,9 @@
   }
 
   updateChart();
-  document.getElementByld("x-axis").addEventListener("change", updateChart);
-  document.getElementByld("y-axis").addEventListener("change", updateChart);
-  document.getElementByld("chart-type").addEventListener("change", updateChart);
+  document.getElementById("x-axis").addEventListener("change", updateChart);
+  document.getElementById("y-axis").addEventListener("change", updateChart);
+  document.getElementById("chart-type").addEventListener("change", updateChart);
  </script>
 </body>
 </html>
