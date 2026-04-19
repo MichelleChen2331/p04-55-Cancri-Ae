@@ -3,14 +3,10 @@ from flask import session, request, redirect, url_for
 import plotly.graph_objects as go
 import plotly.utils #plotly helper
 import json
-from data import load_planets, fetch_and_store
+from data import load_planets
 
 
 app = Flask(__name__)
-
-import os
-if not os.path.exists(os.path.join(os.path.dirname(__file__), "data.db")):
-    fetch_and_store()
 
 @app.route('/')
 def index():
@@ -39,7 +35,8 @@ def data2():
 
 @app.route("/explore", methods=["GET", "POST"])
 def explore():
-    return render_template("Explore.html")
+    df = load_planets()
+    return render_template("Explore.html", data=df.to_json(orient="records"))
 
 def build_density_chart():
     df = load_planets()

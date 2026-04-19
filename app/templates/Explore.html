@@ -25,3 +25,83 @@
   </div>
 </div>
 </nav>
+
+<!-- Custom Graph -->
+ <select id="x-axis">
+    <option value="disc_year">Discovery Year</option>
+    <option value="pl_orbper">Orbital Period</option>
+    <option value="pl_orbsmax">Orbital Distance</option>
+    <option value="pl_rade">Planet Radius</option>
+    <option value="pl_masse">Planet Mass</option>
+    <option value="pl_bmasse">Planet Mass(Earth)</option>
+    <option value="pl_dens">Planet Density</option>
+    <option value="pl_eqt">Temperature(K)</option>
+    <option value="pl_insol">Insolation Flux</option>
+    <option value="pl_orbeccen">Orbital Eccentricity</option>
+    <option value="pl_orbincl">Orbital Inclination</option>
+    <option value="st_teff">Star Temperature</option>
+    <option value="st_rad">Star Radius</option>
+    <option value="st_mass">Star Mass</option>
+    <option value="st_lum">Star Luminosity</option>
+    <option value="st_age">Star Age</option>
+    <option value="sy_dist">Distance From Earth</option>
+ </select>
+
+ <select id="y-axis">
+    <option value="pl_masse">Planet Mass</option>
+    <option value="disc_year">Discovery Year</option>
+    <option value="pl_orbper">Orbital Period</option>
+    <option value="pl_orbsmax">Orbital Distance</option>
+    <option value="pl_rade">Planet Radius</option>
+    <option value="pl_bmasse">Planet Mass (Earth)</option>
+    <option value="pl_dens">Planet Density</option>
+    <option value="pl_eqt">Temperature (K)</option>
+    <option value="pl_insol">Insolation Flux</option>
+    <option value="pl_orbeccen">Orbital Eccentricity</option>
+    <option value="pl_orbincl">Orbital Inclination</option>
+    <option value="st_teff">Star Temperature</option>
+    <option value="st_rad">Star Radius</option>
+    <option value="st_mass">Star Mass</option>
+    <option value="st_lum">Star Luminosity</option>
+    <option value="st_age">Star Age</option>
+    <option value="sy_dist">Distance from Earth</option>
+ </select>
+
+ <select id="chart-type">
+  <option value="scatter">Scatter Plot</option>
+  <option value="line">Line</option>
+ </select>
+
+ <div id="explore-chart"></div>
+
+ <script>
+  const data = {{ data | safe}};
+
+  function updateChart(){
+    const x = document.getElementByld("x-axis").value;
+    const y = document.getElementByld("y-axis").value;
+    const type = document.getElementByld("chart-type").value;
+
+    Plotly.newPlot("explore-chart",[{
+      x: data.map(d => d[x]),
+      y: data.map(d => d[y]),
+      mode: type === "scatter" ? "markers" : "lines",
+      type: "scatter",
+      hovertemplate: '<b>%{x}</b><br>%{y}'
+    }],{
+      xaxis: { title: x },
+      yaxis: { title: y },
+      paper_bgcolor: "rgba(0,0,0,0)",
+      plot_bgcolor: "rgba(20,20,30,0.8)",
+      font: { color: "white" }
+    });
+  }
+
+  updateChart();
+  document.getElementByld("x-axis").addEventListener("change", updateChart);
+  document.getElementByld("y-axis").addEventListener("change", updateChart);
+  document.getElementByld("chart-type").addEventListener("change", updateChart);
+ </script>
+</body>
+</html>
+
