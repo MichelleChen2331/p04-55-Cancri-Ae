@@ -14,11 +14,7 @@ def index():
 
 @app.route('/home', methods=["GET", "POST"])
 def home():
-    chart_json = build_chart()
-    pie_chart_json = pie_discov_method()
-    return render_template("home.html",
-                            chart_json=chart_json,
-                            pie_chart_json=pie_chart_json)
+    return render_template("home.html")
 
 @app.route("/definitions", methods=["GET", "POST"])
 def definitions():
@@ -26,12 +22,14 @@ def definitions():
 
 @app.route("/data1", methods=["GET", "POST"])
 def data1():
-    chart = build_density_chart()
-    return render_template("data1.html", chart_json=chart)
+    chart_json = build_chart()
+    return render_template("data1.html", chart_json=chart_json)
 
 @app.route("/data2", methods=["GET", "POST"])
 def data2():
-    return render_template("data2.html")
+    pie_chart_json = pie_discov_method()
+    return render_template("data2.html",
+                            pie_chart_json=pie_chart_json)
 
 @app.route("/explore", methods=["GET", "POST"])
 def explore():
@@ -133,6 +131,5 @@ def pie_discov_method():
 
 
 if __name__ == '__main__':
-    fetch_and_store()
     app.debug = True
     app.run()
