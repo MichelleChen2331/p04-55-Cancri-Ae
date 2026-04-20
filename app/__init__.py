@@ -38,7 +38,7 @@ def explore():
             "pl_dens", "pl_eqt", "pl_orbeccen", "pl_orbincl", "st_teff",
             "st_rad", "st_mass", "st_lum", "st_age", "sy_dist"]
     cols = [c for c in cols if c in df.columns]
-    return render_template("explore.html", data=df[cols].to_json(orient="records"))
+    return render_template("Explore.html", data=df[cols].to_json(orient="records"))
 
 def build_density_chart():
     df = load_planets()
