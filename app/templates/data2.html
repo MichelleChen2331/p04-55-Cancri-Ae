@@ -56,6 +56,11 @@
         Plotly.newPlot('pie-chart', pieData.data, pieData.layout, {
           responsive: true,
         })
+          //pie chart
+    const densityChart = {{ density_chart_json | safe }};
+        Plotly.newPlot('density-chart', densityChart.data, densityChart.layout, {
+          responsive: true,
+        })
   </script>
 
 </body>

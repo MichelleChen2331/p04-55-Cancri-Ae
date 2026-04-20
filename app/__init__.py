@@ -28,8 +28,10 @@ def data1():
 @app.route("/data2", methods=["GET", "POST"])
 def data2():
     pie_chart_json = pie_discov_method()
+    density_chart_json = build_density_chart()
     return render_template("data2.html",
-                            pie_chart_json=pie_chart_json)
+                            pie_chart_json=pie_chart_json,
+                            density_chart_json=density_chart_json)
 
 @app.route("/explore", methods=["GET", "POST"])
 def explore():
@@ -124,6 +126,10 @@ def pie_discov_method():
         paper_bgcolor= "rgba(0,0,0,0)",
         font = dict(color="white"),
         margin = dict(l=50, r=50, t=20, b=20),
+        legend=dict(
+            font=dict(color="white"),
+            bgcolor="rgba(0,0,0,0)"
+        )
     )
 
     return json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
