@@ -28,10 +28,13 @@ def data1():
 @app.route("/data2", methods=["GET", "POST"])
 def data2():
     pie_chart_json = pie_discov_method()
-    density_chart_json = build_density_chart()
     return render_template("data2.html",
-                            pie_chart_json=pie_chart_json,
-                            density_chart_json=density_chart_json)
+                            pie_chart_json=pie_chart_json)
+
+@app.route("/data3", methods=['GET', 'POST'])
+def data3():
+    radii_chart_json = build_density_chart()
+    return render_template("data3.html", density_chart_json = radii_chart_json)
 
 @app.route("/explore", methods=["GET", "POST"])
 def explore():
