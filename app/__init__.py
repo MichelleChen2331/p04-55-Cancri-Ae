@@ -3,7 +3,7 @@ from flask import session, request, redirect, url_for
 import plotly.graph_objects as go
 import plotly.utils #plotly helper
 import json
-from data import load_planets, fetch_and_store
+from .data import load_planets
 
 
 app = Flask(__name__)
@@ -14,11 +14,7 @@ def index():
 
 @app.route('/home', methods=["GET", "POST"])
 def home():
-    chart_json = build_chart()
-    pie_chart_json = pie_discov_method()
-    return render_template("home.html",
-                            chart_json=chart_json,
-                            pie_chart_json=pie_chart_json)
+    return render_template("home.html")
 
 @app.route("/definitions", methods=["GET", "POST"])
 def definitions():
@@ -26,15 +22,50 @@ def definitions():
 
 @app.route("/data1", methods=["GET", "POST"])
 def data1():
-    return render_template("data1.html")
+    chart_json = build_chart()
+    return render_template("data1.html", chart_json=chart_json)
 
 @app.route("/data2", methods=["GET", "POST"])
 def data2():
-    return render_template("data2.html")
+    pie_chart_json = pie_discov_method()
+    density_chart_json = build_density_chart()
+    return render_template("data2.html",
+                            pie_chart_json=pie_chart_json,
+                            density_chart_json=density_chart_json)
 
 @app.route("/explore", methods=["GET", "POST"])
 def explore():
-    return render_template("Explore.html")
+    df = load_planets()
+    return render_template("Explore.html", data=df.to_json(orient="records"))
+
+def build_density_chart():
+    df = load_planets()
+    fig = go.Figure()
+
+    fig.add_trace(go.Histogram(
+        x=df["pl_rade"],
+        nbinsx=30,
+        marker_color="rgba(100,150,200,0.7)",
+        hovertemplate = (
+            "<b>Radius: %{x} Earth Radii</b><br>"
+            "Count: %{y}<br>"
+            "<extra></extra>"
+        )
+    ))
+
+    fig.update_layout(
+        title = "Distribution of Exoplanet Radii",
+        xaxis = dict(title="Radius (Earth Radii)", color="black",
+                     gridcolor = "rgba(255,255,255,0.1)"),
+        yaxis = dict(title="Count", color="black",
+                     gridcolor = "rgba(255,255,255,0.1)"),
+        paper_bgcolor = "rgba(0,0,0,0)",
+        plot_bgcolor = "rgba(20,20,30,0.8)",
+        font = dict(color="black"),
+        margin = dict(l=60, r=40, t=60, b=60),
+    )
+
+    return json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 
 #Bar Chart of discovery year
 def build_chart():
@@ -62,13 +93,13 @@ def build_chart():
 
     fig.update_layout(
         title = "Exoplanet Discoveries Per Year",
-        xaxis = dict(title="Year", color="white",
+        xaxis = dict(title="Year", color="black",
                      gridcolor = "rgba(255,255,255,0.1)"),
-        yaxis = dict(title="Number of Planets", color="white",
+        yaxis = dict(title="Number of Planets", color="black",
                      gridcolor = "rgba(255,255,255,0.1)"),
         paper_bgcolor = "rgba(0,0,0,0)",
         plot_bgcolor = "rgba(20,20,30,0.8)",
-        font = dict(color="white"),
+        font = dict(color="black"),
         margin = dict(l=60, r=40, t=60, b=60),
     )
 
@@ -93,8 +124,14 @@ def pie_discov_method():
     fig.update_layout(
         title = "Exoplanets Sorted By Discovery Method",
         paper_bgcolor= "rgba(0,0,0,0)",
-        font = dict(color="white"),
+        font = dict(color="black"),
         margin = dict(l=50, r=50, t=20, b=20),
+        legend=dict(
+            font=dict(color="white", size=12),
+            bgcolor="rgba(30,30,40,0.8)",
+            bordercolor= "black",
+            borderwidth=1
+        )
     )
 
     return json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
@@ -102,6 +139,5 @@ def pie_discov_method():
 
 
 if __name__ == '__main__':
-    fetch_and_store()
     app.debug = True
     app.run()

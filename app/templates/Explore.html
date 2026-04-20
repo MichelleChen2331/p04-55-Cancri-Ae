@@ -10,18 +10,140 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg">
-      <div class="container-fluid">
-        <a class="navbar-brand">Janssen<span>.</span></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" style="border-color: rgba(79,195,247,0.3);">
-              <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
-          </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
-      <div class='nav'> <a href="/home">Home </a></div>
-      <div class = 'nav'> <a href="/data1">Data 1 </a></div>
-      <div class='nav'><a href="/data2">Data 2 </a></div>
-      <div class='nav'><a href="/explore">Explore</a><div>
-      <div class='nav'><a href="/defintions">defintions</a></div>
+  <ul class="navbar">
+      <li class='nav'> <a href="/home">Home </a></li>
+      <li class='nav'> <a href="/data1">Data 1 </a></li>
+      <li class='nav'><a href="/data2">Data 2 </a></li>
+      <li class='nav'><a href="/explore">Explore</a></li>
+      <li class='nav'><a href="/definitions">Definitions</a></li>
+  </ul>
+
+  <div>
+    <h1>Explore Exoplanet Data</h1>
+    <p>Now try some customization! Use the dropdowns below to customize your visualization. The first controls the x-axis and the second controls the y-axis. Hover over any one point to display the exact values of both the x and y data.</p>
   </div>
-</div>
-</nav>
+
+<!-- Custom Graph -->
+ <select id="x-axis">
+  <option value="disc_year">Discovery Year</option>
+  <option value="sy_dist">Distance From Earth (pc)</option>
+  <option value="pl_orbsmax">Semimajor Axis (AU)</option>
+  <option value="pl_orbeccen">Orbital Eccentricity</option>
+  <option value="pl_orbincl">Orbital Inclination (degrees)</option>
+  <option value="pl_orbper">Orbital Period (days)</option>
+  <option value="pl_dens">Planet Density (g/cm³)</option>
+  <option value="pl_masse">Planet Mass (Earth masses)</option>
+  <option value="pl_rade">Planet Radius (Earth radii)</option>
+  <option value="st_age">Star Age (Gyr)</option>
+  <option value="st_lum">Star Luminosity (Solar luminosities)</option>
+  <option value="st_mass">Star Mass (Solar masses)</option>
+  <option value="st_rad">Star Radius (Solar radii)</option>
+  <option value="st_teff">Star Temperature (K)</option>
+  <option value="pl_eqt">Temperature (K)</option>
+ </select>
+
+ <select id="y-axis">
+  <option value="disc_year">Discovery Year</option>
+  <option value="sy_dist">Distance From Earth (pc)</option>
+  <option value="pl_orbsmax">Semimajor Axis (AU)</option>
+  <option value="pl_orbeccen">Orbital Eccentricity</option>
+  <option value="pl_orbincl">Orbital Inclination (degrees)</option>
+  <option value="pl_orbper">Orbital Period (days)</option>
+  <option value="pl_dens">Planet Density (g/cm³)</option>
+  <option value="pl_masse">Planet Mass (Earth masses)</option>
+  <option value="pl_rade">Planet Radius (Earth radii)</option>
+  <option value="st_age">Star Age (Gyr)</option>
+  <option value="st_lum">Star Luminosity (Solar luminosities)</option>
+  <option value="st_mass">Star Mass (Solar masses)</option>
+  <option value="st_rad">Star Radius (Solar radii)</option>
+  <option value="st_teff">Star Temperature (K)</option>
+  <option value="pl_eqt">Temperature (K)</option>
+ </select>
+
+ <select id="chart-type">
+  <option value="scatter">Scatter Plot</option>
+  <option value="line">Line</option>
+ </select>
+
+ <div id="explore-chart" style="width:100%;height:500px;"></div>
+<p><b>Hint: </b> for a cool visualization, try selecting 'Semimajor axis (AU)' on one axis and 'Orbital Period (days)' on the other. The resulting scatter plot exemplifies a key law of astronomy, Kepler's Third Law! This law states that the cube of a planet's semimajor axis is proportional to the square of its orbital period .</p>
+ <footer>
+  <div class="content">
+    <p> Data sourced from <a href="https://exoplanetarchive.ipac.caltech.edu/index.html" >NASA Exoplanet Archive</a>, website by team 55 Cancri-Ae</p>
+  </div>
+ </footer>
+ <script>
+  const data = {{ data | safe}};
+
+  const labels = {
+    disc_year: "Discovery Year",
+    pl_orbper: "Orbital Period (days)",
+    pl_orbsmax: "Orbital Distance (AU)",
+    pl_rade: "Planet Radius (Earth radii)",
+    pl_masse: "Planet Mass (Earth masses)",
+    pl_bmasse: "Planet Mass (Earth masses)",
+    pl_dens: "Planet Density (g/cm³)",
+    pl_eqt: "Temperature (K)",
+    pl_orbeccen: "Orbital Eccentricity",
+    pl_orbincl: "Orbital Inclination (degrees)",
+    st_teff: "Star Temperature (K)",
+    st_rad: "Star Radius (Solar radii)",
+    st_mass: "Star Mass (Solar masses)",
+    st_lum: "Star Luminosity (Solar luminosities)",
+    st_age: "Star Age (Gyr)",
+    sy_dist: "Distance From Earth (pc)"
+  };
+
+  const linearColumns = ["disc_year", "pl_orbeccen", "pl_orbincl"];
+
+  function updateChart(){
+    const x = document.getElementById("x-axis").value;
+    const y = document.getElementById("y-axis").value;
+    const type = document.getElementById("chart-type").value;
+
+    const filitered = data.filter(d => d[x] !== null && d[y] !== null && d[x] !== undefined && d[y] !== undefined && !isNaN(d[x]) && !isNaN(d[y]));
+
+    if (filitered.length == 0){
+      document.getElementById("explore-chart").innerHTML = 
+      "<p style='color:white;text-align:center;'>Not enough data.</p>";
+      return;
+    }
+
+    const sorted = [...filitered].sort((a,b) => a[x] - b[x]);
+
+    Plotly.newPlot("explore-chart",[{
+      x: sorted.map(d => d[x]),
+      y: sorted.map(d => d[y]),
+      mode: type === "scatter" ? "markers" : "lines",
+      type: "scatter",
+      hovertemplate: '<b>' + labels[x]+ ':%{x}</b><br>' + labels[y] + ':%{y}<extra></extra>'
+    }],{
+      xaxis: { 
+        title: labels[x],
+        color: "black",
+        type: linearColumns.includes(x) ? "linear" : "log",
+        showticklabels: true,
+        gridcolor: "rgba(255,255,255,0.1)"
+    },
+      yaxis: { 
+        title: labels[y],
+        color: "black",
+        type: linearColumns.includes(y) ? "linear" : "log",
+        showticklabels: true,
+        gridcolor: "rgba(255,255,255,0.1)"
+      },
+      paper_bgcolor: "rgba(0,0,0,0)",
+      plot_bgcolor: "rgba(20,20,30,0.8)",
+      font: { color: "white" },
+      margin: { l:80, r:40, t:40,b:80}
+    });
+  }
+
+  updateChart();
+  document.getElementById("x-axis").addEventListener("change", updateChart);
+  document.getElementById("y-axis").addEventListener("change", updateChart);
+  document.getElementById("chart-type").addEventListener("change", updateChart);
+ </script>
+</body>
+</html>
+
