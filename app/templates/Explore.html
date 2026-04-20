@@ -112,8 +112,8 @@
     const sorted = [...filitered].sort((a,b) => a[x] - b[x]);
 
     Plotly.newPlot("explore-chart",[{
-      x: data.map(d => d[x]),
-      y: data.map(d => d[y]),
+      x: sorted.map(d => d[x]),
+      y: sorted.map(d => d[y]),
       mode: type === "scatter" ? "markers" : "lines",
       type: "scatter",
       hovertemplate: '<b>' + labels[x]+ ':%{x}</b><br>' + labels[y] + ':%{y}<extra></extra>'
