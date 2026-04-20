@@ -14,6 +14,7 @@
       <li class='nav'> <a href="/home">Home </a></li>
       <li class='nav'> <a href="/data1">Data 1 </a></li>
       <li class='nav'><a href="/data2">Data 2 </a></li>
+      <li class='nav'><a href="/data3">Data 3 </a></li>
       <li class='nav'><a href="/explore">Explore</a></li>
       <li class='nav'><a href="/definitions">Definitions</a></li>
   </ul>
@@ -26,38 +27,20 @@
 <!-- Custom Graph -->
  <select id="x-axis">
   <option value="disc_year">Discovery Year</option>
-  <option value="sy_dist">Distance From Earth (pc)</option>
   <option value="pl_orbsmax">Semimajor Axis (AU)</option>
-  <option value="pl_orbeccen">Orbital Eccentricity</option>
-  <option value="pl_orbincl">Orbital Inclination (degrees)</option>
   <option value="pl_orbper">Orbital Period (days)</option>
-  <option value="pl_dens">Planet Density (g/cm³)</option>
   <option value="pl_masse">Planet Mass (Earth masses)</option>
   <option value="pl_rade">Planet Radius (Earth radii)</option>
-  <option value="st_age">Star Age (Gyr)</option>
-  <option value="st_lum">Star Luminosity (Solar luminosities)</option>
-  <option value="st_mass">Star Mass (Solar masses)</option>
-  <option value="st_rad">Star Radius (Solar radii)</option>
-  <option value="st_teff">Star Temperature (K)</option>
-  <option value="pl_eqt">Temperature (K)</option>
+
  </select>
 
  <select id="y-axis">
   <option value="disc_year">Discovery Year</option>
-  <option value="sy_dist">Distance From Earth (pc)</option>
   <option value="pl_orbsmax">Semimajor Axis (AU)</option>
-  <option value="pl_orbeccen">Orbital Eccentricity</option>
-  <option value="pl_orbincl">Orbital Inclination (degrees)</option>
   <option value="pl_orbper">Orbital Period (days)</option>
-  <option value="pl_dens">Planet Density (g/cm³)</option>
   <option value="pl_masse">Planet Mass (Earth masses)</option>
   <option value="pl_rade">Planet Radius (Earth radii)</option>
-  <option value="st_age">Star Age (Gyr)</option>
-  <option value="st_lum">Star Luminosity (Solar luminosities)</option>
-  <option value="st_mass">Star Mass (Solar masses)</option>
-  <option value="st_rad">Star Radius (Solar radii)</option>
-  <option value="st_teff">Star Temperature (K)</option>
-  <option value="pl_eqt">Temperature (K)</option>
+
  </select>
 
  <select id="chart-type">
@@ -104,7 +87,7 @@
     const filitered = data.filter(d => d[x] !== null && d[y] !== null && d[x] !== undefined && d[y] !== undefined && !isNaN(d[x]) && !isNaN(d[y]));
 
     if (filitered.length == 0){
-      document.getElementById("explore-chart").innerHTML = 
+      document.getElementById("explore-chart").innerHTML =
       "<p style='color:white;text-align:center;'>Not enough data.</p>";
       return;
     }
@@ -118,14 +101,14 @@
       type: "scatter",
       hovertemplate: '<b>' + labels[x]+ ':%{x}</b><br>' + labels[y] + ':%{y}<extra></extra>'
     }],{
-      xaxis: { 
+      xaxis: {
         title: labels[x],
         color: "black",
         type: linearColumns.includes(x) ? "linear" : "log",
         showticklabels: true,
         gridcolor: "rgba(255,255,255,0.1)"
     },
-      yaxis: { 
+      yaxis: {
         title: labels[y],
         color: "black",
         type: linearColumns.includes(y) ? "linear" : "log",
@@ -146,4 +129,3 @@
  </script>
 </body>
 </html>
-
