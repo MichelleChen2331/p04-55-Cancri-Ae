@@ -127,8 +127,10 @@ def pie_discov_method():
         font = dict(color="white"),
         margin = dict(l=50, r=50, t=20, b=20),
         legend=dict(
-            font=dict(color="white"),
-            bgcolor="rgba(0,0,0,0)"
+            font=dict(color="white", size=12),
+            bgcolor="rgba(30,30,40,0.8)",
+            bordercolor= "black",
+            borderwidth=1
         )
     )
 
