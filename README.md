@@ -59,3 +59,10 @@ python app/__init__.py
 ```
 
 Live Website: http://167.172.242.87/home
+
+### FEATURE SPOTLIGHT
+* All the visualizations are interactive via plotly
+* The Explore page allows you to pick what variables you want to compare and whether you want a scatter plot or line graph
+* The definitions page lets you learn astronomy
+### KNOWN BUGS/ISSUES
+* The line plot doesn't average out the datas so its hard to intrepret
