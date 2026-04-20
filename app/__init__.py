@@ -93,9 +93,9 @@ def build_chart():
 
     fig.update_layout(
         title = "Exoplanet Discoveries Per Year",
-        xaxis = dict(title="Year", color="white",
+        xaxis = dict(title="Year", color="black",
                      gridcolor = "rgba(255,255,255,0.1)"),
-        yaxis = dict(title="Number of Planets", color="white",
+        yaxis = dict(title="Number of Planets", color="black",
                      gridcolor = "rgba(255,255,255,0.1)"),
         paper_bgcolor = "rgba(0,0,0,0)",
         plot_bgcolor = "rgba(20,20,30,0.8)",
