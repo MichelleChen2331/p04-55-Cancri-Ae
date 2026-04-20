@@ -61,7 +61,7 @@ def build_density_chart():
                      gridcolor = "rgba(255,255,255,0.1)"),
         paper_bgcolor = "rgba(0,0,0,0)",
         plot_bgcolor = "rgba(20,20,30,0.8)",
-        font = dict(color="white"),
+        font = dict(color="black"),
         margin = dict(l=60, r=40, t=60, b=60),
     )
 
