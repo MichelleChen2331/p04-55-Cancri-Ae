@@ -24,6 +24,183 @@
   </div>
 
 
+  <div id="glowscript" class="glowscript">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link type="text/css" href="https://www.glowscript.org/css/redmond/2.1/jquery-ui.custom.css" rel="stylesheet" />
+  <link type="text/css" href="https://www.glowscript.org/css/ide.css" rel="stylesheet" />
+  <script type="text/javascript" src="https://www.glowscript.org/lib/jquery/2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://www.glowscript.org/lib/jquery/2.1/jquery-ui.custom.min.js"></script>
+  <script type="text/javascript" src="https://www.glowscript.org/package/glow.3.2.min.js"></script>
+  <script type="text/javascript" src="https://www.glowscript.org/package/RSrun.3.2.min.js"></script>
+  <script type="text/javascript"><!--//--><![CDATA[//><!--
+
+  // START JAVASCRIPT
+  ;(function() {;
+  var ρσ_modules = {};
+  ρσ_modules.pythonize = {};
+
+
+  (function(){
+      function strings() {
+          var string_funcs, exclude, name;
+          string_funcs = set("capitalize strip lstrip rstrip islower isupper isspace lower upper swapcase center count endswith startswith find rfind index rindex format join ljust rjust partition rpartition replace split rsplit splitlines zfill".split(" "));
+          if (!arguments.length) {
+              exclude = (function(){
+                  var s = ρσ_set();
+                  s.jsset.add("split");
+                  s.jsset.add("replace");
+                  return s;
+              })();
+          } else if (arguments[0]) {
+              exclude = Array.prototype.slice.call(arguments);
+          } else {
+              exclude = null;
+          }
+          if (exclude) {
+              string_funcs = string_funcs.difference(set(exclude));
+          }
+          var ρσ_Iter0 = string_funcs;
+          ρσ_Iter0 = ((typeof ρσ_Iter0[Symbol.iterator] === "function") ? (ρσ_Iter0 instanceof Map ? ρσ_Iter0.keys() : ρσ_Iter0) : Object.keys(ρσ_Iter0));
+          for (var ρσ_Index0 of ρσ_Iter0) {
+              name = ρσ_Index0;
+              (ρσ_expr_temp = String.prototype)[(typeof name === "number" && name < 0) ? ρσ_expr_temp.length + name : name] = (ρσ_expr_temp = ρσ_str.prototype)[(typeof name === "number" && name < 0) ? ρσ_expr_temp.length + name : name];
+          }
+      };
+      if (!strings.__module__) Object.defineProperties(strings, {
+          __module__ : {value: "pythonize"}
+      });
+
+      ρσ_modules.pythonize.strings = strings;
+  })();
+  async function __main__() {
+  "use strict";
+      var display = canvas;
+      var scene = canvas();
+
+      var version, print, arange, __name__, type, ρσ_ls, scene, G, sun, earth, t, dt;
+      version = ρσ_list_decorate([ "3.2", "glowscript" ]);
+      Array.prototype['+'] = function(r) {return this.concat(r)}
+      Array.prototype['*'] = function(r) {return __array_times_number(this, r)}
+      window.__GSlang = "vpython";
+      print = GSprint;
+      arange = range;
+      __name__ = "__main__";
+      type = pytype;
+      var strings = ρσ_modules.pythonize.strings;
+
+      strings();
+      "4";
+      scene = ρσ_interpolate_kwargs.call(this, canvas, [ρσ_desugar_kwargs({width: 600, height: 600})]);
+      "6";
+      G = 6.67e-11;
+      "8";
+      sun = ρσ_interpolate_kwargs.call(this, sphere, [ρσ_desugar_kwargs({pos: vector(0, 0, 0), radius: 12e9, texture: "https://i.imgur.com/XdRTvzj.jpeg", shininess: 0, emissive: true, make_trail: true})]);
+      "9";
+      earth = ρσ_interpolate_kwargs.call(this, sphere, [ρσ_desugar_kwargs({pos: vector(15e10, 0, 0), radius: 637e7, texture: textures.earth, make_trail: true, retain: 30})]);
+      "14";
+      sun.mass = 1.9891e30;
+      "15";
+      earth.mass = 5.97e24;
+      "17";
+      sun.velocity = vector(0, 0, 0);
+      "18";
+      earth.velocity = vector(0, 21e3, 0);
+      "20";
+      sun.acc = vector(0, 0, 0);
+      "21";
+      earth.acc = vector(0, 0, 0);
+      "23";
+      G = 6.6743["*"](pow(10, 1["-u"]()["*"](11)));
+      "25";
+      (await setvalues(.238, (await EuToKg(4914.9)), (await MStarToSMass(1.66)), (await AuToM(1.178))));
+      "27";
+      async function setvalues(Ecc, PMass, SMass, SemiMajor) {
+          "28";
+          sun.mass = SMass;
+          "29";
+          earth.mass = PMass;
+          "30";
+          earth.velocity.y = sqrt(G["*"](SMass)["*"](1["-"](1["*"](Ecc))["/"](SemiMajor["*"](1["+"](Ecc)))));
+      };
+      if (!setvalues.__argnames__) Object.defineProperties(setvalues, {
+          __argnames__ : {value: ["Ecc", "PMass", "SMass", "SemiMajor"]},
+          __module__ : {value: null}
+      });
+
+      "32";
+      async function EuToKg(EarthMassUnits) {
+          "33";
+          return EarthMassUnits["*"](5.9722)["*"](pow(10, 24));
+      };
+      if (!EuToKg.__argnames__) Object.defineProperties(EuToKg, {
+          __argnames__ : {value: ["EarthMassUnits"]},
+          __module__ : {value: null}
+      });
+
+      "35";
+      async function AuToM(Au) {
+          "36";
+          return Au["*"](pow(10, 11));
+      };
+      if (!AuToM.__argnames__) Object.defineProperties(AuToM, {
+          __argnames__ : {value: ["Au"]},
+          __module__ : {value: null}
+      });
+
+      "38";
+      async function MStarToSMass(MStar) {
+          "39";
+          return MStar["*"](1.9891)["*"](pow(10, 30));
+      };
+      if (!MStarToSMass.__argnames__) Object.defineProperties(MStarToSMass, {
+          __argnames__ : {value: ["MStar"]},
+          __module__ : {value: null}
+      });
+
+      "41";
+      async function gravity(star, satellite) {
+          var ρσ_ls, r;
+          "43";
+          r = satellite.pos["-"](1["*"](star.pos));
+          "44";
+          return 1["-u"]()["*"](1)["*"](G)["*"](star.mass)["*"](satellite.mass)["/"](Math.pow(abs(mag(r)), 2))["*"](hat(r));
+      };
+      if (!gravity.__argnames__) Object.defineProperties(gravity, {
+          __argnames__ : {value: ["star", "satellite"]},
+          __module__ : {value: null}
+      });
+      "47";
+      t = 0;
+      "48";
+      dt = 3600;
+      "51";
+      while ((earth.pos["-"](1["*"](sun.pos))).mag[">"](earth.radius["+"](sun.radius))) {
+          "52";
+          (await rate(1e3));
+          "56";
+          earth.acc = (await gravity(sun, earth))["/"](earth.mass);
+          "59";
+          earth.velocity=earth.velocity["+"](earth.acc["*"](dt));
+          "60";
+          sun.velocity=sun.velocity["+"](sun.acc["*"](dt));
+          "62";
+          earth.pos=earth.pos["+"](earth.velocity["*"](dt));
+          "63";
+          sun.pos=sun.pos["+"](sun.velocity["*"](dt));
+          "66";
+          t = t["+"](dt);
+      }
+  };
+  if (!__main__.__module__) Object.defineProperties(__main__, {
+      __module__ : {value: null}
+  });
+
+  ;$(function(){ window.__context = { glowscript_container: $("#glowscript").removeAttr("id") }; __main__() })})()
+  // END JAVASCRIPT
+
+  //--><!]]></script>
+  </div>
+
 
 <!-- Custom Graph -->
  <select id="x-axis">
