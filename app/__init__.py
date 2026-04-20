@@ -34,7 +34,11 @@ def data2():
 @app.route("/explore", methods=["GET", "POST"])
 def explore():
     df = load_planets()
-    return render_template("explore.html", data=df.to_json(orient="records"))
+    cols = ["disc_year", "pl_orbperd", "pl_orbsmax", "pl_rade", "pl_masse",
+            "pl_dens", "pl_eqt", "pl_orbeccen", "pl_orbincl", "st_teff",
+            "st_rad", "st_mass", "st_lum", "st_age", "sy_dist"]
+    cols = [c for c in cols if c in df.columns]
+    return render_template("explore.html", data=df[cols].to_json(orient="records"))
 
 def build_density_chart():
     df = load_planets()
