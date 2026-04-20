@@ -38,3 +38,18 @@ Ethan Cheung -- 4/18/26 11:16 p.m.
   - added simulation to explore
   - added navbar to explore
   - changed css to be consistent
+Michelle Chen -- 4/19/26
+  - Added explore.html visualizations
+  - Fixed the labels for the graphs
+
+HOME STRETCH CHECKLIST:
+------------------------------------
+* Add the simulations to page - Ethan and Thamidur
+* Add more information on how to intrepret the data - Natalie
+* Clean up the website - Michelle 
+====================================
+
+NOTABLE DESIGN REVISIONS:
+------------------------------------
+
+====================================
