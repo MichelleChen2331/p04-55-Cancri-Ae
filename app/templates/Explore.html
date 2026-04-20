@@ -101,6 +101,16 @@
     const y = document.getElementById("y-axis").value;
     const type = document.getElementById("chart-type").value;
 
+    const filitered = data.filter(d => d[x] !== null && d[y] !== null && d[x] !== undefined && d[y] !== undefined && !isNaN(d[x]) && !isNaN(d[y]));
+
+    if (filitered.length == 0){
+      document.getElementById("explore-chart").innerHTML = 
+      "<p style='color:white;text-align:center;'>Not enough data.</p>";
+      return;
+    }
+
+    const sorted = [...filitered].sort((a,b) => a[x] - b[x]);
+
     Plotly.newPlot("explore-chart",[{
       x: data.map(d => d[x]),
       y: data.map(d => d[y]),
@@ -109,14 +119,14 @@
       hovertemplate: '<b>' + labels[x]+ ':%{x}</b><br>' + labels[y] + ':%{y}<extra></extra>'
     }],{
       xaxis: { 
-        title: { text: labels[x], font: {color: "white", size: 14 } },
+        title: labels[x],
         color: "white",
         type: linearColumns.includes(x) ? "linear" : "log",
         showticklabels: true,
         gridcolor: "rgba(255,255,255,0.1)"
     },
       yaxis: { 
-        title: { text: labels[y], font: {color: "white", size: 14 } },
+        title: labels[y],
         color: "white",
         type: linearColumns.includes(y) ? "linear" : "log",
         showticklabels: true,
