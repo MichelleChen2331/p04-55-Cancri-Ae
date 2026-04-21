@@ -123,33 +123,33 @@
     const sorted = [...filitered].sort((a,b) => parseFloat(a[x]) - parseFloat(b[x]));
 
     Plotly.newPlot("explore-chart",[{
-      x: sorted.map(d => d[x]),
-      y: sorted.map(d => d[y]),
-      text: sorted.map(d => d["pl_name"]),
-      mode: type === "scatter" ? "markers" : "lines",
-      type: "scatter",
-      hovertemplate: '<b>%{text}</b><br>' + labels[x]+ ':%{x}<br>' + labels[y] + ':%{y}<extra></extra>',
-    }],{
-      xaxis: {
-        title: labels[x],
-        color: "black",
-        type: linearColumns.includes(x) ? "linear" : "log",
-        showticklabels: true,
-        gridcolor: "rgba(255,255,255,0.1)"
-    },
-      yaxis: {
-        title: labels[y],
-        color: "black",
-        type: linearColumns.includes(y) ? "linear" : "log",
-        showticklabels: true,
-        gridcolor: "rgba(255,255,255,0.1)"
-      },
-      paper_bgcolor: "rgba(0,0,0,0)",
-      plot_bgcolor: "rgba(20,20,30,0.8)",
-      font: { color: "black" },
-      margin: { l:80, r:40, t:40,b:80}
-    });
-  }
+     x: sorted.map(d => d[x]),
+     y: sorted.map(d => d[y]),
+     text: sorted.map(d => d["pl_name"]),
+     mode: type === "scatter" ? "markers" : "lines",
+     type: "scatter",
+     hovertemplate: '<b>%{text}</b><br>' + labels[x]+ ':%{x}<br>' + labels[y] + ':%{y}<extra></extra>',
+   }],{
+     xaxis: {
+       title: labels[x],
+       color: "black",
+       type: linearColumns.includes(x) ? "linear" : "log",
+       showticklabels: true,
+       gridcolor: "rgba(255,255,255,0.1)"
+   },
+     yaxis: {
+       title: labels[y],
+       color: "black",
+       type: linearColumns.includes(y) ? "linear" : "log",
+       showticklabels: true,
+       gridcolor: "rgba(255,255,255,0.1)"
+     },
+     paper_bgcolor: "rgba(0,0,0,0)",
+     plot_bgcolor: "rgba(20,20,30,0.8)",
+     font: { color: "black" },
+     margin: { l:80, r:40, t:40,b:80}
+   });
+ }
 
   updateChart();
   document.getElementById("x-axis").addEventListener("change", updateChart);
