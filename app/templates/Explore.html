@@ -30,6 +30,16 @@
   <option value="pl_orbsmax">Semimajor Axis (AU)</option>
   <option value="pl_orbper">Orbital Period (days)</option>
   <option value="pl_masse">Planet Mass (Earth masses)</option>
+  <option value="pl_dens">Planet Density (g/cm^3)</option>
+  <option value="pl_eqt">Temperature (K)</option>
+  <option value="pl_orbeccen">Orbital Eccentricity</option>
+  <option value="pl_orbincl">Orbital Inclination</option>
+  <option value="st_teff">Star Temperature (K)</option>
+  <option value="st_rad">Star Radius (solar radii)</option>
+  <option value="st_mass">Star Mass (Solar masses)</option>
+  <option value="st_lum">Star Luminosity (Solar luminosities)</option>
+  <option value="st_age">Star Age (Gyr)</option>
+  <option value="sy_dist">Distance From Earth (pc)</option>
   <option value="pl_rade">Planet Radius (Earth radii)</option>
 
  </select>
@@ -40,6 +50,16 @@
   <option value="pl_orbper">Orbital Period (days)</option>
   <option value="pl_masse">Planet Mass (Earth masses)</option>
   <option value="pl_rade">Planet Radius (Earth radii)</option>
+  <option value="pl_dens">Planet Density (g/cm^3)</option>
+  <option value="pl_eqt">Temperature (K)</option>
+  <option value="pl_orbeccen">Orbital Eccentricity</option>
+  <option value="pl_orbincl">Orbital Inclination</option>
+  <option value="st_teff">Star Temperature (K)</option>
+  <option value="st_rad">Star Radius (Solar radii)</option>
+  <option value="st_mass">Star Mass (Solar masses)</option>
+  <option value="st_lum">Star Luminosity (Solar luminosities)</option>
+  <option value="st_age">Star Age (Gyr)</option>
+  <option value="sy_dist">Distance From Earth (pc)</option>
 
  </select>
 
@@ -101,9 +121,10 @@
     Plotly.newPlot("explore-chart",[{
       x: sorted.map(d => d[x]),
       y: sorted.map(d => d[y]),
+      text: sorted.map(d => d["pl_name"]),
       mode: type === "scatter" ? "markers" : "lines",
       type: "scatter",
-      hovertemplate: '<b>' + labels[x]+ ':%{x}</b><br>' + labels[y] + ':%{y}<extra></extra>'
+      hovertemplate: '<b>%{text}</b><br>' + labels[x]+ ':%{x}<br>' + labels[y] + ':%{y}<extra></extra>',
     }],{
       xaxis: {
         title: labels[x],
