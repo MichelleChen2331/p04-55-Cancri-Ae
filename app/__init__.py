@@ -4,9 +4,11 @@ import plotly.graph_objects as go
 import plotly.utils #plotly helper
 import json
 from .data import load_planets
-
+import sqlite3
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
+app.secret_key = "676767676helpaaaaaamogusrahhhh"
 
 @app.route('/')
 def index():
@@ -14,7 +16,58 @@ def index():
 
 @app.route('/home', methods=["GET", "POST"])
 def home():
-    return render_template("home.html")
+    logged_in = "You aren't logged in but, "
+    logged_in_bool = False
+    if "user" in session:
+        logged_in = session["user"]
+        logged_in_bool = True
+    return render_template("home.html",logged_in=logged_in)
+
+@app.route('/login', methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+
+        conn = sqlite3.connect("users.db")
+        c = conn.cursor()
+
+        c.execute("SELECT password FROM users WHERE username = ?", (username,))
+        result = c.fetchone()
+        conn.close()
+
+        if result and check_password_hash(result[0], password):
+            session["user"] = username
+            return redirect(url_for("index"))
+        else:
+            return render_template("login.html", invalid="Invalid username or password")
+
+    return render_template("login.html")
+
+@app.route('/register', methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        username = request.form["username"]
+        password = generate_password_hash(request.form["password"])
+
+        conn = sqlite3.connect("users.db")
+        c = conn.cursor()
+
+        try:
+            c.execute("INSERT INTO users (username, password) VALUES (?, ?)",
+                      (username, password))
+            conn.commit()
+        except sqlite3.IntegrityError:
+            conn.close()
+            return render_template("register.html", invalid="Username already exists")
+
+        conn.close()
+
+        session["user"] = username
+        return redirect(url_for("index"))
+
+    return render_template("register.html")
+
 
 @app.route("/definitions", methods=["GET", "POST"])
 def definitions():
