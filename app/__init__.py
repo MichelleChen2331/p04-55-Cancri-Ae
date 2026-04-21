@@ -3,7 +3,7 @@ from flask import session, request, redirect, url_for
 import plotly.graph_objects as go
 import plotly.utils #plotly helper
 import json
-from .cd ..data import load_planets
+from data import load_planets
 import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -16,7 +16,7 @@ def index():
 
 @app.route('/home', methods=["GET", "POST"])
 def home():
-    logged_in = "You aren't logged in but, "
+    logged_in = "You aren't logged in but"
     logged_in_bool = False
     if "user" in session:
         logged_in = session["user"]
