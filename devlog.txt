@@ -41,6 +41,9 @@ Ethan Cheung -- 4/18/26 11:16 p.m.
 Michelle Chen -- 4/19/26
   - Added explore.html visualizations
   - Fixed the labels for the graphs
+Thamidur Rahman -- 4/20/26 10:40 p.m.
+  - added search to Planets.html
+  - configured simulation in Planets.html
 
 HOME STRETCH CHECKLIST:
 ------------------------------------
