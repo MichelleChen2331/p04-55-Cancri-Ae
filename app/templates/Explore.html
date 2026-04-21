@@ -45,7 +45,7 @@
 
  <select id="chart-type">
   <option value="scatter">Scatter Plot</option>
-  <option value="line">Line</option>
+  <option value="line">Line Graph</option>
  </select>
 
  <div id="explore-chart" style="width:100%;height:500px;"></div>
@@ -84,7 +84,11 @@
     const y = document.getElementById("y-axis").value;
     const type = document.getElementById("chart-type").value;
 
-    const filitered = data.filter(d => d[x] !== null && d[y] !== null && d[x] !== undefined && d[y] !== undefined && !isNaN(d[x]) && !isNaN(d[y]));
+    const filitered = data.filter(d => {
+      const xVal = parseFloat(d[x]);
+      const yVal = parseFloat(d[y]);
+      return !isNaN(xVal) && !isNaN(yVal);
+    });
 
     if (filitered.length == 0){
       document.getElementById("explore-chart").innerHTML =
@@ -92,7 +96,7 @@
       return;
     }
 
-    const sorted = [...filitered].sort((a,b) => a[x] - b[x]);
+    const sorted = [...filitered].sort((a,b) => parseFloat(a[x]) - parseFloat(b[x]));
 
     Plotly.newPlot("explore-chart",[{
       x: sorted.map(d => d[x]),
@@ -117,7 +121,7 @@
       },
       paper_bgcolor: "rgba(0,0,0,0)",
       plot_bgcolor: "rgba(20,20,30,0.8)",
-      font: { color: "white" },
+      font: { color: "black" },
       margin: { l:80, r:40, t:40,b:80}
     });
   }
