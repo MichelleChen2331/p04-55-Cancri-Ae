@@ -11,11 +11,13 @@
 
 <body>
   <ul class="navbar">
-      <li class='nav'> <a href="/home">Home </a></li>
-      <li class='nav'> <a href="/data1">Data 1 </a></li>
-      <li class='nav'><a href="/data2">Data 2 </a></li>
-      <li class='nav'><a href="/explore">Explore</a></li>
-      <li class='nav'><a href="/definitions">Definitions</a></li>
+    <li class='nav'> <a href="/home">Home </a></li>
+    <li class='nav'> <a href="/data1">Data 1 </a></li>
+    <li class='nav'><a href="/data2">Data 2 </a></li>
+    <li class='nav'><a href="/explore">Explore</a></li>
+    <li class='nav'><a href="/definitions">Definitions</a></li>
+    <li class='nav'><a href="/login">Login</a></li>
+    <li class='nav'><a href="/register">Register</a></li>
   </ul>
   <br>
 
@@ -103,14 +105,14 @@
       type: "scatter",
       hovertemplate: '<b>' + labels[x]+ ':%{x}</b><br>' + labels[y] + ':%{y}<extra></extra>'
     }],{
-      xaxis: { 
+      xaxis: {
         title: { text: labels[x], font: {color: "white", size: 14 } },
         color: "white",
         type: linearColumns.includes(x) ? "linear" : "log",
         showticklabels: true,
         gridcolor: "rgba(255,255,255,0.1)"
     },
-      yaxis: { 
+      yaxis: {
         title: { text: labels[y], font: {color: "white", size: 14 } },
         color: "white",
         type: linearColumns.includes(y) ? "linear" : "log",
@@ -131,4 +133,3 @@
  </script>
 </body>
 </html>
-
