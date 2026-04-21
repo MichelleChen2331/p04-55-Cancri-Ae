@@ -10,7 +10,7 @@ def load_csv():
     if not os.path.exists(DB_FILE):
         df = pd.read_csv(CSV_FILE)
         conn = sqlite3.connect(DB_FILE)
-        df.to_sql("planets", conn, if_exists-"replace", index=False)
+        df.to_sql("planets", conn, if_exists="replace", index=False)
         conn.close()
         print(f"Loaded {len(df)} planets into SQLite.")
 
