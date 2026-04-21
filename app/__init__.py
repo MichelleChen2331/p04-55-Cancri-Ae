@@ -41,6 +41,11 @@ def explore():
     df = load_planets()
     return render_template("Explore.html", data=df.to_json(orient="records"))
 
+@app.route("/planets", methods=["GET", "POST"])
+def planets():
+    df = load_planets()
+    return render_template("Planets.html", data=df.to_json(orient="records"))
+
 def build_density_chart():
     df = load_planets()
     fig = go.Figure()
