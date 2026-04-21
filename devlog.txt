@@ -44,6 +44,9 @@ Michelle Chen -- 4/19/26
 Thamidur Rahman -- 4/20/26 10:40 p.m.
   - added search to Planets.html
   - configured simulation in Planets.html
+Ethan Cheung -- 4/21/26 2:45 p.m
+  - added login and register pages with local functionality 
+  - fixed css of navbar
 
 HOME STRETCH CHECKLIST:
 ------------------------------------
