@@ -105,10 +105,11 @@
     const type = document.getElementById("chart-type").value;
 
     const filitered = data.filter(d => {
-      const xVal = parseFloat(d[x]);
-      const yVal = parseFloat(d[y]);
+      const xVal = parseFloat(d["disc_year"]);
+      const yVal = parseFloat(d["sy_dist"]);
       return !isNaN(xVal) && !isNaN(yVal);
     });
+    console.log(filitered.length);
 
     if (filitered.length == 0){
       document.getElementById("explore-chart").innerHTML =
