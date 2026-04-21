@@ -3,7 +3,7 @@ from flask import session, request, redirect, url_for
 import plotly.graph_objects as go
 import plotly.utils #plotly helper
 import json
-from data import *
+from .data import load_planets
 import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -102,10 +102,20 @@ def data2():
     return render_template("data2.html",
                             pie_chart_json=pie_chart_json)
 
+@app.route("/data3", methods=['GET', 'POST'])
+def data3():
+    radii_chart_json = build_density_chart()
+    return render_template("data3.html", density_chart_json = radii_chart_json)
+
 @app.route("/explore", methods=["GET", "POST"])
 def explore():
     df = load_planets()
-    return render_template("explore.html", data=df.to_json(orient="records"))
+    return render_template("Explore.html", data=df.to_json(orient="records"))
+
+@app.route("/planets", methods=["GET", "POST"])
+def planets():
+    df = load_planets()
+    return render_template("Planets.html", data=df.to_json(orient="records"))
 
 def build_density_chart():
     df = load_planets()
@@ -124,13 +134,13 @@ def build_density_chart():
 
     fig.update_layout(
         title = "Distribution of Exoplanet Radii",
-        xaxis = dict(title="Radius (Earth Radii)", color="white",
+        xaxis = dict(title="Radius (Earth Radii)", color="black",
                      gridcolor = "rgba(255,255,255,0.1)"),
-        yaxis = dict(title="Count", color="white",
+        yaxis = dict(title="Count", color="black",
                      gridcolor = "rgba(255,255,255,0.1)"),
         paper_bgcolor = "rgba(0,0,0,0)",
         plot_bgcolor = "rgba(20,20,30,0.8)",
-        font = dict(color="white"),
+        font = dict(color="black"),
         margin = dict(l=60, r=40, t=60, b=60),
     )
 
@@ -162,13 +172,13 @@ def build_chart():
 
     fig.update_layout(
         title = "Exoplanet Discoveries Per Year",
-        xaxis = dict(title="Year", color="white",
+        xaxis = dict(title="Year", color="black",
                      gridcolor = "rgba(255,255,255,0.1)"),
-        yaxis = dict(title="Number of Planets", color="white",
+        yaxis = dict(title="Number of Planets", color="black",
                      gridcolor = "rgba(255,255,255,0.1)"),
         paper_bgcolor = "rgba(0,0,0,0)",
         plot_bgcolor = "rgba(20,20,30,0.8)",
-        font = dict(color="white"),
+        font = dict(color="black"),
         margin = dict(l=60, r=40, t=60, b=60),
     )
 
@@ -193,8 +203,14 @@ def pie_discov_method():
     fig.update_layout(
         title = "Exoplanets Sorted By Discovery Method",
         paper_bgcolor= "rgba(0,0,0,0)",
-        font = dict(color="white"),
+        font = dict(color="black"),
         margin = dict(l=50, r=50, t=20, b=20),
+        legend=dict(
+            font=dict(color="white", size=12),
+            bgcolor="rgba(30,30,40,0.8)",
+            bordercolor= "black",
+            borderwidth=1
+        )
     )
 
     return json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)

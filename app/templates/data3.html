@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title> Janssen </title>
+    <title> Example Data 3 </title>
     <link href="../static/css/data.css" rel="stylesheet"/>
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous"> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
@@ -20,45 +20,41 @@
       <li class='nav'><a href="/explore">Explore</a></li>
       <li class='nav'><a href="/planets">Planets</a></li>
       <li class='nav'><a href="/definitions">Definitions</a></li>
-      <li class='nav'><a href="/login">Login</a></li>
-      <li class='nav'><a href="/register">Register</a></li>
   </ul>
 
-<!--BANNER-->
-<section class="banner">
 
-   <div class="banner-overlay"></div>
-    <div class="banner-text">
-      <h1>Example Data #2: Exoplanet Discovery Methods</h1>
-      <p>This pie chart shows the distribution of how exoplanets were discovered. Go to the <a href='/definitions'> definitions</a> page for an explanation of each discovery method. Click on one of the colored boxes to show/hide any discovery method.</p>
-    </div>
-</section>
+  <section class="banner">
+     <div class="banner-overlay"></div>
+      <div class="banner-text">
+        <h1>Example Data #3: Distribution of Exoplanet Radii</h1>
+      </div>
+  </section>
 
-
-<!-- PIE CHART -->
- <section class="chart-section">
-    <div class="chart-card">
-            <div id="pie-chart"></div>
-    </div>
- </section>
- <div>
-   <p>The distribution of discovery methods is noticably heavy in the transit method. This is the result of multiple factors: variations in spectra from transits are easiest to observe AND confirm, do not require planets to be orbitting in a head-on axis, and are immediately obvious in data rather than requiring a dedicated search. </p>
- </div>
-<br>
-<br>
-<br><br>
-<br>
+  <section class="chart-section">
+   <div class="chart-card">
+     <p>Here's another example of exoplanet data displayed. These data have a bimodal distribution, favoring 1-3 Earth mass planets and 10-13 Earth mass planets. Why might that be? </p>
+     <div id="density-chart" style="width:100%;height:500px;"></div>
+   </div>
+  </section>
+  <div>
+    <p>Try visiting the <a href='/explore'>explore</a> and graphing Planet Radius vs. Semimajor Axis -- an interesting pattern is formed!</p>
+  </div>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
  <footer>
   <div class="content">
     <p> Data sourced from <a href="https://exoplanetarchive.ipac.caltech.edu/index.html" >NASA Exoplanet Archive</a>, website by team 55 Cancri-Ae</p>
   </div>
  </footer>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-  <script>
-    //pie chart
-    const pieData = {{ pie_chart_json | safe }};
-        Plotly.newPlot('pie-chart', pieData.data, pieData.layout, {
+     <script>
+    //bar chart
+    const densityChart = {{ density_chart_json | safe }};
+        Plotly.newPlot('density-chart', densityChart.data, densityChart.layout, {
           responsive: true,
         })
   </script>
