@@ -23,6 +23,40 @@
     <p>Search for planets!</p>
   </div>
 
+  <body>
+  <div class="container">
+  <div class="row">
+  <div class="col-md-12">
+  <h1 class=>Find Planets!</h1>
+  <h2 class=>Enter the name of a planet to see its orbit!</h2>
+  <form id="form" onsubmit="return false">
+  <input class="form-control" id="user-input" placeholder="Enter planet…">
+  <button id="button" type="button" class="btn btn-secondary">Find Planet!</button>
+  </form>
+
+  <table class="table" cellpadding="10">
+  <thead>
+  <tr>
+  <th scope="col">#</th>
+  <th scope="col">Planet Name</th>
+  <th scope="col">Discovery Year</th>
+  <th scope="col">Orbital Period (days)</th>
+  <th scope="col">Semi-Major Axis (AU)</th>
+  <th scope="col">Radius (Earth radii)</th>
+  <th scope="col">Mass (Earth masses)</th>
+
+
+  </tr>
+  </thead>
+  <tbody id="planet-tbody"></tbody>
+  </table>
+  </div>
+  </div>
+  </div>
+
+</br>
+</br>
+</br>
 
   <div id="glowscript" class="glowscript">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -94,9 +128,9 @@
       "6";
       G = 6.67e-11;
       "8";
-      sun = ρσ_interpolate_kwargs.call(this, sphere, [ρσ_desugar_kwargs({pos: vector(0, 0, 0), radius: 12e9, texture: "https://i.imgur.com/XdRTvzj.jpeg", shininess: 0, emissive: true, make_trail: true})]);
+      sun = ρσ_interpolate_kwargs.call(this, sphere, [ρσ_desugar_kwargs({pos: vector(0, 0, 0), radius: 3e9, color: color.orange, shininess: 0, emissive: true, make_trail: true})]);
       "9";
-      earth = ρσ_interpolate_kwargs.call(this, sphere, [ρσ_desugar_kwargs({pos: vector(15e10, 0, 0), radius: 637e7, texture: textures.earth, make_trail: true, retain: 30})]);
+      earth = ρσ_interpolate_kwargs.call(this, sphere, [ρσ_desugar_kwargs({pos: vector(15e10, 0, 0), radius: 200e7, texture: textures.earth, make_trail: true, retain: 30})]);
       "14";
       sun.mass = 1.9891e30;
       "15";
@@ -119,13 +153,22 @@
           sun.mass = SMass;
           "29";
           earth.mass = PMass;
+          // Reset positions and velocities
+          sun.pos = vector(0, 0, 0);
+          sun.velocity = vector(0, 0, 0);
+          sun.acc = vector(0, 0, 0);
+          earth.pos = vector(SemiMajor, 0, 0);
+          earth.acc = vector(0, 0, 0);
+          if (earth.clear_trail) earth.clear_trail();
+          if (sun.clear_trail) sun.clear_trail();
           "30";
-          earth.velocity.y = sqrt(G["*"](SMass)["*"](1["-"](1["*"](Ecc))["/"](SemiMajor["*"](1["+"](Ecc)))));
+          earth.velocity = vector(0, Math.sqrt(G * SMass * (1 - Ecc) / (SemiMajor * (1 + Ecc))), 0);
       };
       if (!setvalues.__argnames__) Object.defineProperties(setvalues, {
           __argnames__ : {value: ["Ecc", "PMass", "SMass", "SemiMajor"]},
           __module__ : {value: null}
       });
+      window._planetSetValues = setvalues;
 
       "32";
       async function EuToKg(EarthMassUnits) {
@@ -172,9 +215,9 @@
       "47";
       t = 0;
       "48";
-      dt = 3600;
+      dt = 500;
       "51";
-      while ((earth.pos["-"](1["*"](sun.pos))).mag[">"](earth.radius["+"](sun.radius))) {
+      while (true) {
           "52";
           (await rate(1e3));
           "56";
@@ -202,57 +245,17 @@
   </div>
 
 
-<!-- Custom Graph -->
- <select id="x-axis">
-  <option value="disc_year">Discovery Year</option>
-  <option value="sy_dist">Distance From Earth (pc)</option>
-  <option value="pl_orbsmax">Semimajor Axis (AU)</option>
-  <option value="pl_orbeccen">Orbital Eccentricity</option>
-  <option value="pl_orbincl">Orbital Inclination (degrees)</option>
-  <option value="pl_orbper">Orbital Period (days)</option>
-  <option value="pl_dens">Planet Density (g/cm³)</option>
-  <option value="pl_masse">Planet Mass (Earth masses)</option>
-  <option value="pl_rade">Planet Radius (Earth radii)</option>
-  <option value="st_age">Star Age (Gyr)</option>
-  <option value="st_lum">Star Luminosity (Solar luminosities)</option>
-  <option value="st_mass">Star Mass (Solar masses)</option>
-  <option value="st_rad">Star Radius (Solar radii)</option>
-  <option value="st_teff">Star Temperature (K)</option>
-  <option value="pl_eqt">Temperature (K)</option>
- </select>
 
- <select id="y-axis">
-  <option value="disc_year">Discovery Year</option>
-  <option value="sy_dist">Distance From Earth (pc)</option>
-  <option value="pl_orbsmax">Semimajor Axis (AU)</option>
-  <option value="pl_orbeccen">Orbital Eccentricity</option>
-  <option value="pl_orbincl">Orbital Inclination (degrees)</option>
-  <option value="pl_orbper">Orbital Period (days)</option>
-  <option value="pl_dens">Planet Density (g/cm³)</option>
-  <option value="pl_masse">Planet Mass (Earth masses)</option>
-  <option value="pl_rade">Planet Radius (Earth radii)</option>
-  <option value="st_age">Star Age (Gyr)</option>
-  <option value="st_lum">Star Luminosity (Solar luminosities)</option>
-  <option value="st_mass">Star Mass (Solar masses)</option>
-  <option value="st_rad">Star Radius (Solar radii)</option>
-  <option value="st_teff">Star Temperature (K)</option>
-  <option value="pl_eqt">Temperature (K)</option>
- </select>
 
- <select id="chart-type">
-  <option value="scatter">Scatter Plot</option>
-  <option value="line">Line</option>
- </select>
 
  <div id="explore-chart" style="width:100%;height:500px;"></div>
-<p><b>Hint: </b> for a cool visualization, try selecting 'Semimajor axis (AU)' on one axis and 'Orbital Period (days)' on the other. The resulting scatter plot exemplifies a key law of astronomy, Kepler's Third Law! This law states that the cube of a planet's semimajor axis is proportional to the square of its orbital period .</p>
  <footer>
   <div class="content">
     <p> Data sourced from <a href="https://exoplanetarchive.ipac.caltech.edu/index.html" >NASA Exoplanet Archive</a>, website by team 55 Cancri-Ae</p>
   </div>
  </footer>
  <script>
-  const data = {{ data | safe}};
+  var data = {{ data | safe}};
 
   const labels = {
     disc_year: "Discovery Year",
@@ -276,9 +279,13 @@
   const linearColumns = ["disc_year", "pl_orbeccen", "pl_orbincl"];
 
   function updateChart(){
-    const x = document.getElementById("x-axis").value;
-    const y = document.getElementById("y-axis").value;
-    const type = document.getElementById("chart-type").value;
+    var xEl = document.getElementById("x-axis");
+    var yEl = document.getElementById("y-axis");
+    var tEl = document.getElementById("chart-type");
+    if (!xEl || !yEl || !tEl) return;
+    const x = xEl.value;
+    const y = yEl.value;
+    const type = tEl.value;
 
     const filitered = data.filter(d => d[x] !== null && d[y] !== null && d[x] !== undefined && d[y] !== undefined && !isNaN(d[x]) && !isNaN(d[y]));
 
@@ -318,10 +325,75 @@
     });
   }
 
-  updateChart();
-  document.getElementById("x-axis").addEventListener("change", updateChart);
-  document.getElementById("y-axis").addEventListener("change", updateChart);
-  document.getElementById("chart-type").addEventListener("change", updateChart);
+  if (document.getElementById("x-axis")) updateChart();
+  if (document.getElementById("x-axis")) document.getElementById("x-axis").addEventListener("change", updateChart);
+  if (document.getElementById("y-axis")) document.getElementById("y-axis").addEventListener("change", updateChart);
+  if (document.getElementById("chart-type")) document.getElementById("chart-type").addEventListener("change", updateChart);
+
+  // --- Planet search ---
+  document.getElementById("button").addEventListener("click", searchPlanet);
+  document.getElementById("user-input").addEventListener("keydown", function(e) {
+    if (e.key === "Enter") searchPlanet();
+  });
+
+  var selectedRow = null;
+
+  function searchPlanet() {
+    var query = document.getElementById("user-input").value.trim().toLowerCase();
+    var tbody = document.getElementById("planet-tbody");
+    if (!tbody) { alert("Table not found — make sure you saved the latest Planets.html to app/templates/"); return; }
+    tbody.innerHTML = "";
+    selectedRow = null;
+
+    if (query === "") {
+      tbody.innerHTML = "<tr><td colspan='7'>Enter a planet name to search.</td></tr>";
+      return;
+    }
+
+    var matches = data.filter(function(p) {
+      return p.pl_name && p.pl_name.toLowerCase().indexOf(query) !== -1;
+    });
+
+    if (matches.length === 0) {
+      tbody.innerHTML = "<tr><td colspan='7'>No planets found.</td></tr>";
+      return;
+    }
+
+    matches.slice(0, 20).forEach(function(p, i) {
+      var tr = document.createElement("tr");
+      tr.style.cursor = "pointer";
+      tr.title = "Click to simulate this planet's orbit";
+      function fmt(v) {
+        return (v !== null && v !== undefined && !isNaN(v) && v !== "") ? Number(v).toPrecision(4) : "—";
+      }
+      tr.innerHTML =
+        "<td>" + (i + 1) + "</td>" +
+        "<td><strong>" + (p.pl_name || "—") + "</strong></td>" +
+        "<td>" + (p.disc_year || "—") + "</td>" +
+        "<td>" + fmt(p.pl_orbper) + "</td>" +
+        "<td>" + fmt(p.pl_orbsmax) + "</td>" +
+        "<td>" + fmt(p.pl_rade) + "</td>" +
+        "<td>" + fmt(p.pl_masse != null ? p.pl_masse : p.pl_bmasse) + "</td>";
+      tr.addEventListener("click", function() {
+        if (selectedRow) selectedRow.style.backgroundColor = "";
+        selectedRow = tr;
+        tr.style.backgroundColor = "rgba(100, 160, 255, 0.25)";
+        applyToSimulation(p);
+      });
+      tbody.appendChild(tr);
+    });
+  }
+
+  function applyToSimulation(p) {
+    var ecc   = (p.pl_orbeccen != null && !isNaN(p.pl_orbeccen)) ? p.pl_orbeccen : 0;
+    var pmass = ((p.pl_masse != null ? p.pl_masse : (p.pl_bmasse || 1))) * 5.9722e24;
+    var smass = (p.st_mass || 1) * 1.9891e30;
+    var sma   = (p.pl_orbsmax || 1) * 1e11;
+    if (window._planetSetValues) {
+      window._planetSetValues(ecc, pmass, smass, sma);
+    }
+  }
  </script>
+
 </body>
 </html>
